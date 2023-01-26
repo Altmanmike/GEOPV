@@ -24,9 +24,9 @@ class NewCategoryTicketFormType extends AbstractType
             ->add('content', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Description de la catégorie'
+                    'placeholder' => 'Contenu de la catégorie'
                 ],
-                'label' => 'Nouvelle catégorie',
+                'label' => 'Contenu',
                 'label_attr' => ['class' => 'my-2']
             ])
             //->add('created_at')

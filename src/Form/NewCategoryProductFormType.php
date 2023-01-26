@@ -2,19 +2,19 @@
 
 namespace App\Form;
 
-use App\Entity\CategoryPost;
+use App\Entity\CategoryProduct;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class NewCategoryPostFormType extends AbstractType
+class NewCategoryProductFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-			->add('title', TextType::class, [
+		    ->add('title', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
                     'placeholder' => 'Titre de la catégorie'
@@ -61,7 +61,7 @@ class NewCategoryPostFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => CategoryPost::class,
+            'data_class' => CategoryTicket::class,
         ]);
     }
 }

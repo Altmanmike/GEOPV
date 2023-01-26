@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Envoyer un nouvel article{% endblock %}
+
+{% block body %}
+
+    <section class="container w-75 mx-auto my-5">
+        <h1 class="text-center mb-3">Nouvel article</h1>
+        {{ form_start(newPostForm) }}
+            {{ form_row(newPostForm.title) }}
+            {{ form_row(newPostForm.content) }}
+            <button type="submit" class="btn btn-primary btn-lg my-3">Envoyer</button>
+        {{ form_end(newPostForm) }}
+    </section>
+
+{% endblock %}

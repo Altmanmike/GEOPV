@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="{{ asset('assets/favicon.ico') }}" />
+        <title>GEOPV</title>
+    
+        <!-- FONT AWESOME CSS + JS -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/font-awesome-4.3.0.min.css') }}"> 
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+        <script src="https://kit.fontawesome.com/d40df77f00.js" crossorigin="anonymous" defer></script> 
+    
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    
+        <!-- BOOTSTRAP CSS + JS -->    
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous" defer></script>
+        
+        <!-- JQUERY JS -->
+        <!--<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js" defer></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js" ></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js" defer></script>-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js" defer></script>       
+    
+        <!-- GOOGLE FONT --> 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&display=swap">
+    
+        <!-- APP CSS STYLESHEET -->    
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/normalize-3.0.3.min.css') }}" />
+          
+    
+        <!-- LEAFLET CSS + JS -->    
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"/>    
+        <link rel="stylesheet" href="{{ asset('assets/css/leaflet-measure.css') }}"/> 
+        <script type="text/javascript" src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" defer></script>
+        <script type="text/javascript" src="https://ignf.github.io/geoportal-wfs-client/dist/geoportal-wfs-client.min.js" defer></script>
+        <!--<script src="https://unpkg.com/geojson-vt@3.2.0/geojson-vt.js" defer></script>
+        <script src="js/leaflet-geojson-vt.js" defer></script>-->
+        <link rel="stylesheet" href="{{ asset('assets/css/L.Control.HtmlLegend.css') }}">    
+        <link rel="stylesheet" href="{{ asset('assets/css/Leaflet.AnimatedSearchBox.css') }}">   
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">  
+        <!-- CSS Libraries -->
+        <!--<link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />-->
+    
+        <!-- JAVASCRIPT Libraries -->    
+        <!--<script src="lib/chart/chart.min.js" defer></script>
+        <script src="lib/easing/easing.min.js" defer></script>
+        <script src="lib/waypoints/waypoints.min.js" defer></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js" defer></script>
+        <script src="lib/tempusdominus/js/moment.min.js" defer></script>
+        <script src="lib/tempusdominus/js/moment-timezone.min.js" defer></script>
+        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js" defer></script>-->
+    
+    </head>
+    <body>
+
+        {% include "inc/nav.html.twig" %}
+
+        {% block body %}{% endblock %}
+
+        {% include "inc/footer.html.twig" %}
+        
+        <!-- JAVASCRIPT -->    
+        <script type="text/javascript" src="{{ asset('assets/js/to-top.js') }}" defer></script>
+        <script type="text/javascript" src="{{ asset('assets/js/effects.js') }}" defer></script>
+        <script type="text/javascript" src="{{ asset('assets/js/sidebar.js') }}" defer></script>
+        <script type="text/javascript" src="{{ asset('assets/js/leaflet-measure.fr.js') }}" defer></script>
+        <script type="text/javascript" src="{{ asset('assets/js/L.Control.MousePosition.js') }}" defer></script>
+        <script type="text/javascript" src="{{ asset('assets/js/L.Control.ResetView.js') }}" defer></script>
+        <script type="text/javascript" src="{{ asset('assets/js/geolet.js') }}" defer></script>
+        <script type="text/javascript" src="{{ asset('assets/js/L.Control.HtmlLegend.js') }}" defer></script>
+        <script type="text/javascript" src="{{ asset('assets/js/L.Control.GeoapifyAddressSearch.js') }}" defer></script>
+        <script type="text/javascript" src="{{ asset('assets/js/app.js') }}" defer></script> 
+        <script type="text/javascript" src="{{ asset('assets/js/main.js') }}" defer></script>
+
+    </body>
+    
+</html>

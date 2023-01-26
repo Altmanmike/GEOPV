@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir les informations utilisateur{% endblock %}
+
+{% block body %}
+
+    <section class="container mx-auto my-5">
+        <div class="card text-center w-50 mx-auto">
+            <div class="card-header">
+                <h5 class="card-title">Utilisateur du compte n°{{ user.id }}</h5>
+            </div>
+            <div class="card-body">                
+                <p class="card-text mb-4"><strong>E-mail :</strong> {{ user.email }}</p>
+                <p class="card-text mb-4"><strong>Prénom :</strong> {{ user.firstname }}</p>
+                <p class="card-text mb-4"><strong>Nom :</strong> {{ user.lastname }}</p>
+                <p class="card-text mb-4"><strong>Rôle sur le site :</strong> {% if user.roles[0] == 'ROLE_USER' %}utilisateur{% endif %}</p>
+                <p class="card-text mb-4"><strong>Code postal :</strong> {{ user.zipcode }}</p>
+                <p class="card-text"><strong>Ville :</strong> {{ user.city }}</p>      
+            </div>
+            <div class="card-footer">
+                <p class="card-text"><strong>Compte crée le :</strong> {{ user.createdAt.format('d/m/Y') }}</p>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

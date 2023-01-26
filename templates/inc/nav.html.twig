@@ -1,0 +1,98 @@
+<hr class="full">
+<hr class="grad1">
+<nav class="navbar navbar-expand-lg navbar navbar-dark" > 
+    <div class="container-fluid menu">
+        <a class="navbar-brand px-3" href="{{ path('app_main') }}"><img src="{{ asset('assets/img/GEOPV_logo.png') }}" alt="geopv_logo" class="logo_geopv"/></a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse justify-content-end navbar-text" id="navbarNav">
+            <ul class="navbar-nav text-center">
+                <li class="nav-item mx-1">
+                    <a class="nav-link active" href="{{ path('app_main') }}"><i class="fas fa-home"></i> Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_main') }}#presentation"><i class="fas fa-newspaper"></i> Le service</a>                    
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_main') }}#atouts"><i class="fas fa-chart-line"></i> Les atouts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_main') }}#fonctionnement"><i class="fas fa-users-cog"></i> Fonctionnement</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_main') }}#prix"><i class="fas fa-hand-holding-usd"></i> Nos prix</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_main') }}#apropos"><i class="fas fa-info"></i> À propos</a>
+                </li>   
+            </ul>     
+        </div>
+        <div class="collapse navbar-collapse justify-content-end navbar-text" id="navbarNav">
+            {% if app.user %}                
+                <div class="dropdown text-center">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user"></i> Connecté 
+                  </a>
+                  <ul class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
+                    {% if app.user.roles == '["ROLE_ADMIN"]' %}
+                    <li>
+                        <a class="dropdown-item" href="{{ path('app_admin_dash', {id: app.user.id}) }}"><i class="fas fa-address-card"></i> Tableau de bord</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a class="dropdown-item" href="{{ path('app_user_dash', {id: app.user.id}) }}"><i class="fas fa-address-card"></i> Tableau de bord</a>
+                    </li>
+                    {% endif %}
+                    <li>
+                        <a class="dropdown-item" href="{{ path('app_user', {id: app.user.id}) }}"><i class="fas fa-user-edit"></i> Profil</a>
+                    </li>   
+                    <li>
+                        <a class="dropdown-item" href="{{ path('app_geopv', {id: app.user.id}) }}"><i class="fa fa-map"></i> App GeoPV</a>
+                    </li>                  
+                    <li>
+                        <a class="dropdown-item" href="{{ path('app_pre_logout') }}"><i class="fas fa-sign-out-alt"></i> Se déconnecter</a>
+                    </li>                                        
+                  </ul>
+                </div> 
+            {% else %}
+                <ul class="navbar-nav text-center"> 
+                    <li class="nav-item mx-1">
+                        <a class="nav-link"  href="{{ path('app_login') }}" ><i class="fas fa-sign-in-alt"></i> Se connecter</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav text-center"> 
+                    <li class="nav-item mx-1">
+                        <a class="nav-link"  href="{{ path('app_register') }}" ><i class="fas fa-user-edit"></i> S'enregistrer</a>
+                    </li>
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+        
+<!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0974F1" fill-opacity="1" d="M0,256L1440,160L1440,0L0,0Z"></path></svg>--> 
+
+<div class="container">
+
+    <!--<?php if(isset($_SESSION['flash'])): ?>
+        <?php foreach($_SESSION['flash'] as $type => $message): ?>
+            <div class="w-50 mx-auto text-center alert alert-<?= $type; ?>">
+                <?= $message; ?>
+            </div>
+        <?php endforeach; ?>
+        <?php unset($_SESSION['flash']); ?>
+    <?php endif; ?>-->
+    
+</div>
+
+<!-- GO TOP BUTTON -->
+<div id="scrollUp" >
+    <a href="#top"><img src="{{ asset('assets/img/to_top.png') }}" alt="GO TOP"></a>
+</div>
+
+
+
+    

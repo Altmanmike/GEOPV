@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir les informations des <strong>articles</strong>{% endblock %}
+
+{% block body %}
+    <section class="container w-75 my-5 text-center">
+        <h1 class="mb-3">Liste des <strong>articles</strong> enregistrés</h1>
+        <div class="row">
+            <table class="table table-hover bg-light my-3">
+                <thead class="table-dark">
+                    <tr>
+                        <td>N°</td>
+                        <td>Utilisateur</td>
+                        <td>Titre de l'article</td>
+                        <td>Contenu de l'article</td>
+                        <td>Crée le</td>
+                        <td>Détails</td>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for post in posts|reverse %}
+                    <tr>
+                        <td>{{ post.id }}</td>
+                        <td>{{ post.user.email }}</td>
+                        <td>{{ post.title }}</td>
+                        <td>{{ post.content }}</td>
+                        <td>{{ post.createdAt.format('d/m/Y') }}</td>
+                        <td><a href="{{path('app_admin_showPost', {id: post.id} )}}" ><i class="fa fa-eye"></i></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </section>
+{% endblock %}

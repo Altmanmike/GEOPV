@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir les informations des <strong>utilisateurs</strong>{% endblock %}
+
+{% block body %}
+    <section class="container w-75 my-5 text-center">
+        <h1 class="mb-3">Liste des <strong>utilisateurs</strong> enregistrés</h1>
+        <div class="row">
+            <table class="table table-hover bg-light my-3">
+                <thead class="table-dark">
+                    <tr>
+                        <td>Nom</td>
+                        <td>Prénom</td>
+                        <td>E-mail</td>
+                        <td>Code postal</td>
+                        <td>Ville</td>
+                        <td>Crée le</td>
+                        <td>Éditer</td>
+                        <td>Supprimer</td>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for user in users|reverse %}
+                    <tr>
+                        <td>{{ user.firstname }}</td>
+                        <td>{{ user.lastname }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.zipcode }}</td>
+                        <td>{{ user.city }}</td>
+                        <td>{{ user.createdAt.format('d/m/Y') }}</td>
+                        <td><a href="{{path('app_admin_showUser', {id: user.id} )}}" ><i class="fa fa-eye"></i></a></td>
+                        <td><a href="{{path('app_admin_deleteUser', {id: user.id} )}}" ><i class="fa fa-trash"></i></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </section>
+{% endblock %}

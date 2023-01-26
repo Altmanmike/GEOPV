@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+    
+    {# if app.user.roles == 'ROLE_ADMIN' #}
+        <section class="container w-75 my-5">
+            <div class="row text-center">
+                <h1 class="container my-2">Bienvenue dans votre tableau de bord </h1><br>
+                <p class="container my-2">{{ app.user.firstname }} {{ app.user.lastname }}</p>
+                <p class="container my-2">Vous avez reçu {{nb_new_tickets}} nouveau(x) ticket(s), {{nb_new_answers}} nouvelle(s) réponse(s) et {{nb_new_payments}} nouveau(x) paiement(s) depuis votre dernière connexion !</p>
+                <div class="container my-2">
+                    <img src="{{asset('assets/img/profile.svg')}}" class="profileSVG" alt="" >
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 my-3">
+                    <div class="card">
+                        <div class="card-body">
+                        <h5 class="card-title">UTILISATEURS</h5>
+                        <p class="card-text">Liste des utilisateurs inscris, avec gestion.</p>
+                        <a href="{{path('app_admin_showUsers')}}" class="btn btn-danger mt-2">Voir inscrits</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 my-3">
+                    <div class="card">
+                        <div class="card-body">
+                        <h5 class="card-title">PAIEMENTS</h5>
+                        <p class="card-text">Liste des paiements reçus, avec gestion.</p>
+                        <a href="{{path('app_admin_showPayments')}}" class="btn btn-danger mt-2">Voir paiements {% if nb_new_payments > 0 %}<span class="badge text-bg-primary"> {{nb_new_payments}}</span></a>{% else %}<span class="badge text-bg-primary"> 0</span></a>{% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 my-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">PRODUITS</h5>
+                            <p class="card-text">Liste des produits enregistrés "en dur" dans le code, avec gestion.</p>
+                            <a href="{{path('app_admin_showProducts')}}" class="btn btn-danger mt-2">Voir produits</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 my-3">
+                    <div class="card">
+                        <div class="card-body">
+                        <h5 class="card-title">TICKETS</h5>
+                        <p class="card-text">Liste des tickets et des réponses reçus, avec gestion.</p>
+                        <a href="{{path('app_admin_showTickets')}}" class="btn btn-danger mt-2">Voir tickets et réponses {% if nb_new_tickets > 0 and nb_new_answers > 0 %}<span class="badge text-bg-primary"> {{nb_new_tickets}} et {{nb_new_answers}}</span></a>{% elseif nb_new_tickets > 0 %}<span class="badge text-bg-primary">{{nb_new_tickets}}</span></a>{% else %}<span class="badge text-bg-primary"> {{nb_new_answers}}</span></a>{% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {# endif #}
+
+{% endblock %}

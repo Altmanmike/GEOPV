@@ -1,0 +1,30 @@
+/* INSERTION D'UN ADMIN DANS LA BASE DE DONNEES */
+INSERT INTO `users` (`id`, `email`, `roles`, `password`, `lastname`, `firstname`, `phone`, `sector`, `firm`, `address`, `city`, `zipcode`, `department`, `region`, `status_website`, `status_firm`, `nb_transaction`, `token`, `created_at`, `last_login_at`, `product_id`) VALUES ("1", "admin@geopv.fr", "admin", "admin", "Malot", "Alexandre", "0675846235", "Energies", "ECOTRADE", "Chemin Moulin Carron", "Ecully", "69130", "Rhône", "Rhône-Alpes", "Admin", "Dirigeant", "0", null, "2022-05-18 00:00:00", "2022-05-18 00:00:00", null);
+
+
+/* INSERTION D'UNE DEMI-DOUZAINE DE FAUX CLIENTS DANS LA BASE DE DONNEES */
+/* client 1 */
+INSERT INTO `users` (`id`, `email`, `roles`, `password`, `lastname`, `firstname`, `phone`, `sector`, `firm`, `address`, `city`, `zipcode`, `department`, `region`, `status_website`, `status_firm`, `nb_transaction`, `token`, `created_at`, `last_login_at`, `product_id`) VALUES ("2", "contact@batis.fr", "constructeur", "batis", "Dupond", "Pierre", "0665847923", "Energies", "BATIS69", null, "Lyon", "69008", "Rhône", "Rhône-Alpes", "client", "Dirigeant", "2", null, "2022-05-18 14:50:00", "2022-05-18 14:50:00", null);
+
+/* client 2 */
+INSERT INTO `users` (`id`, `email`, `roles`, `password`, `lastname`, `firstname`, `phone`, `sector`, `firm`, `address`, `city`, `zipcode`, `department`, `region`, `status_website`, `status_firm`, `nb_transaction`, `token`, `created_at`, `last_login_at`, `product_id`) VALUES ("3", "contact@poseSol.com", "constructeur", "poseSol", "Tazou", "Bernard", "0747454289", "Energies", "PoseSol26", null, "Valence", "26000", "Rhône", "Rhône-Alpes", "client", "salarié", "1", null, "2022-05-18 16:20:00", "2022-05-18 16:20:00", null);
+
+/* client 3 */
+INSERT INTO `users` (`id`, `email`, `roles`, `password`, `lastname`, `firstname`, `phone`, `sector`, `firm`, `address`, `city`, `zipcode`, `department`, `region`, `status_website`, `status_firm`, `nb_transaction`, `token`, `created_at`, `last_login_at`, `product_id`) VALUES ("4", "contact@pvInvest.fr", "investisseur", "pvInvest", "Pelletier", "George", "0600365285", "Energies", "PVinvest", null, "Lyon", "69003", "Rhône", "Rhône-Alpes", "client", "salarié", "1", null, "2022-05-18 19:12:00", "2022-05-18 19:12:00", null);
+
+
+
+/****************************************************/
+EXEMPLE DE PRISE DE FORMULE D'ABONNEMENT = UN PRODUIT COMMANDER DONC IL FAUT UN SELECT DANS EN INPUT paiement direct ou abonnement par mois AJOUTER nb_jetons
+donc products_id dans la table de l'user sera différent => une liste de products_id un array AJOUTER staus_paiement et RENOMMER total_paid en total
+
+/* INSERTION DES FORMULES D'ABONNEMENTS */  
+ 
+/* FORMULE 1 */
+INSERT INTO `products`(`id`, `type`, `type_price`, `nb_months`, `total_paid`) VALUES ("1", "Paiement direct", "12€", "0", "12€")
+
+/* FORMULE 2 */
+INSERT INTO `products`(`id`, `type`, `type_price`, `nb_months`, `total_paid`) VALUES ("2", "Paiement par mois", "20€", "6 mois", "120€")
+
+/* FORMULE 3 */
+INSERT INTO `products`(`id`, `type`, `type_price`, `nb_months`, `total_paid`) VALUES ("3", "Paiement direct", "29€", "1 mois", "29€")

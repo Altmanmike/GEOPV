@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir les informations des <strong>tickets</strong>{% endblock %}
+
+{% block body %}
+    <section class="container w-75 my-5 text-center">
+        <h1 class="mb-3">Liste des <strong>tickets</strong> enregistrés</h1>
+        <div class="row">
+            <table class="table table-hover bg-light my-3">
+                <thead class="table-dark">
+                    <tr>
+                        <td>N°</td>
+                        <td>Utilisateur</td>
+                        <td>Titre du ticket</td>
+                        <td>Contenu du ticket</td>                        
+                        <td>Crée le</td>
+                        <td>Résolu le</td>
+                        <td>Détails</td>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for ticket in tickets|reverse %}
+                    <tr>
+                        <td>{{ ticket.id }}</td>
+                        <td>{{ ticket.user.email }}</td>
+                        <td>{{ ticket.title }}</td>
+                        <td>{{ ticket.content }}</td>
+                        <td>{{ ticket.createdAt.format('d/m/Y') }}</td>
+                        <td>{% if ticket.completedAt != null %}{{ ticket.completedAt.format('d/m/Y') }}{% else %} En attente{% endif %}</td>
+                        <td><a href="{{path('app_admin_showTicket', {id: ticket.id} )}}" ><i class="fa fa-eye"></i></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </section>
+{% endblock %}

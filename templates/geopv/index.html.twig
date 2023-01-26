@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}L'application GeoPV!{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid" style="padding:0;background-color:#242428;color:#ccc">
+        <a href="#" class="btn-expand-collapse text-center"><i class="fas fa-align-left"></i></a>
+    </div>
+    <div class="container-fluid app">        
+        <nav class="navbar-primary">            
+            <ul class="navbar-primary-menu">
+                <li>                   
+                    <a href="#"><i class="fa fa-address-card"></i><span class="nav-label mx-2">Profile</span></a>
+                    <a href="#"><i class="fa fa-envelope-o"></i><span class="nav-label mx-2">Notifications</span></a>
+                    <a href="#"><i class="fa fa-credit-card"></i><span class="nav-label mx-2">Renouveler</span></a>
+                    <a href="#"><i class="fa fa-link"></i><span class="nav-label mx-2" onclick="saveFile()">Exportation</span></a>                    
+                    <a href="#">
+                        <div id="eventoutput" class="mx-auto">
+                            <i class="fa fa-list"></i><span class="nav-label mx-2">Résultats: </br>
+                        </div></a>                     
+                </li>
+            </ul>        
+        </nav>
+        <div id="map" class="main-content leaflet-container leaflet-retina leaflet-fade-anim leaflet-grab" tabindex="0"></div>
+        <div id="geoapify-returned" style="display: none"></div>
+    </div> 
+
+{% endblock %}

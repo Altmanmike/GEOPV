@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir les informations paiement{% endblock %}
+
+{% block body %}
+
+    <section class="container mx-auto my-5">
+        <div class="card text-center w-50 mx-auto">
+            <div class="card-header">
+                <h5 class="card-title">Utilisateur n°{{ payment.id }}</h5>
+            </div>
+            <div class="card-body">                
+                <p class="card-text mb-4">Formule: {{ payment.product.id }}</p>
+                <p class="card-text mb-4">Prix unitaire: {{ payment.priceunit }} €</p>
+                <p class="card-text mb-4">Status: n°{{ payment.status }}</p>
+                <p class="card-text">Quantité: {{ payment.quantity }} </p>     
+            </div>
+            <div class="card-footer">
+                <p class="card-text"><mark>Prix total: {{ payment.totalprice }} €</mark></p>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

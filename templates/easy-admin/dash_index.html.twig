@@ -1,0 +1,231 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard Admin{% endblock %}
+
+{% block body %}
+
+    <!-- REVENUS & VENTES -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-sm-6 col-xl-3">
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa fa-chart-line fa-3x text-danger"></i>
+                    <div class="ms-3">
+                        <p class="mb-2">Ventes du jour</p>
+                        <h6 class="mb-0">
+                            {% set sommeD = 0 %}
+                            {% for payment in payments %}
+                                {% if payment.completedAt and (payment.completedAt.format('d/m/Y') == date("now").format('d/m/Y')) %}                                
+                                    {% set sommeD = sommeD + payment.totalprice %}                                    
+                                {% endif %}
+                            {% endfor %}
+                            {{ sommeD }} €
+                        </h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa fa-chart-bar fa-3x text-danger"></i>
+                    <div class="ms-3">
+                        <p class="mb-2">Ventes de la semaine</p>
+                        <h6 class="mb-0">
+                            {% set somme = 0 %}
+                            {% for payment in payments|reverse %}
+                                {% if payment.completedAt and (payment.completedAt > payment.getPaymentD7D()) %}                                
+                                    {% set somme = somme + payment.totalprice %}                                    
+                                {% endif %}
+                            {% endfor %}
+                            {{ somme }} €
+                        </h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa fa-money fa-3x text-danger"></i>
+                    <div class="ms-3">
+                        <p class="mb-2">Dernier achat</p>
+                        <h6 class="mb-0">{{ payments|last.totalprice }} €</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa fa-chart-pie fa-3x text-danger"></i>
+                    <div class="ms-3">
+                        <p class="mb-2">Revenu total</p>
+                        <h6 class="mb-0">
+                            {% set somme = 0 %}
+                            {% for payment in payments %}   
+                                {% if payment.completedAt %}                                                           
+                                    {% set somme = somme + payment.totalprice %}    
+                                {% endif %}                            
+                            {% endfor %}
+                            {{ somme }} €
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIN REVENUS & VENTES -->
+
+    <!-- REVENUS & VENTES -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-sm-6 col-xl-3">
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa fa-users fa-3x text-danger"></i>
+                    <div class="ms-3">                        
+                        <h6 class="mb-2">
+                            <a href="{{path('app_admin_showUsers')}}" class="btn btn-danger mt-2">Voir incrits <span class="badge text-bg-primary">2</span></a>                            
+                        </h6> 
+                        <h6 class="mb-0">Liste des utilisateurs</h6>                     
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa fa-university fa-3x text-danger"></i>
+                    <div class="ms-3">                        
+                        <h6 class="mb-2">
+                            <a href="{{path('app_admin_showPayments')}}" class="btn btn-danger mt-2">Voir paiements <span class="badge text-bg-primary">1</span></a>                           
+                        </h6> 
+                        <h6 class="mb-0">Liste des paiements</h6> 
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa fa-cube fa-3x text-danger"></i>
+                    <div class="ms-3">                        
+                        <h6 class="mb-2">
+                            <a href="{{path('app_admin_showProducts')}}" class="btn btn-danger mt-2">Voir produits</a>
+                        </h6>
+                        <h6 class="mb-0">Liste des produits</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa fa-ticket fa-3x text-danger"></i>
+                    <div class="ms-3">                        
+                        <h6 class="mb-2">  
+                            <a href="{{path('app_admin_showTickets')}}" class="btn btn-danger mt-2">Voir tickets et réponses <span class="badge text-bg-primary">3</span></a>                          
+                        </h6>
+                        <h6 class="mb-0">Liste des tickets</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIN REVENUS & VENTES -->
+
+    <!-- VENTES STATS -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-sm-12 col-xl-6">               
+                <div class="bg-light text-left rounded p-4">
+                    <h6 class="mb-4">Tickets récents</h6>
+                    <div class="d-flex align-items-center justify-content-between mb-4">                        
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-dark">                                    
+                                    <th scope="col"><h6 class="mb-0">Date</h6></th>
+                                    <th scope="col"><h6 class="mb-0">Titre</h6></th>                                       
+                                    <th scope="col"><h6 class="mb-0">Contenu</h6></th>                           
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for ticket in tickets|reverse|slice(0, 10) %}
+                                <tr>
+                                    <td>{{ ticket.createdAt.format('d/m/Y') }}</td>
+                                    <td>{{ ticket.title }}</td> 
+                                    <td>{{ ticket.content }}</td>                                        
+                                </tr>
+                                {% endfor %}        
+                            </tbody>
+                        </table>
+                    </div>                   
+                </div>
+            </div>
+            <div class="col-sm-12 col-xl-6">
+                <div class="bg-light text-left rounded p-4">
+                    <h6 class="mb-4">Réponses récents</h6>
+                    <div class="d-flex align-items-center justify-content-between mb-4">                        
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-dark">                                    
+                                    <th scope="col"><h6 class="mb-0">Date</h6></th>
+                                    <th scope="col"><h6 class="mb-0">Email</h6></th>                                    
+                                    <th scope="col"><h6 class="mb-0">Réponse</h6></th>                           
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for answer in answers|reverse|slice(0, 10) %}
+                                <tr>
+                                    <td>{{ answer.createdAt.format('d/m/Y') }}</td>
+                                    <td>{{ answer.getUser().getEmail() }}</td>  
+                                    <td>{{ answer.content }}</td>                                        
+                                </tr>
+                                {% endfor %}        
+                            </tbody>
+                        </table>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIN VENTES STATS -->
+
+    <!-- DERNIERES INSCRIPTIONS -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h6 class="mb-0">Inscriptions récentes</h6>               
+            </div>
+            <div class="table-responsive">
+                <table class="table text-start align-middle table-bordered table-hover mb-0">
+                    <thead>
+                        <tr class="text-dark">                                    
+                            <th scope="col"><h6 class="mb-0">Date</h6></th>                                    
+                            <th scope="col"><h6 class="mb-0">Société</h6></th>
+                            <th scope="col"><h6 class="mb-0">Nom</h6></th>
+                            <th scope="col"><h6 class="mb-0">Prénom</h6></th>                                                       
+                            <th scope="col"><h6 class="mb-0">Code postal</h6></th>
+                            <th scope="col"><h6 class="mb-0">Ville</h6></th>                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users|reverse|slice(0, 10) %}
+                        <tr>
+                            <td>{{ user.createdAt.format('d/m/Y') }}</td>
+                            <td>{{ user.company }}</td>
+                            <td>{{ user.lastname }}</td>
+                            <td>{{ user.firstname }}</td>                            
+                            <td>{{ user.zipcode }}</td>                            
+                            <td>{{ user.city }}</td>                            
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- FIN DERNIERES INSCRIPTIONS -->
+
+    <!-- DASHBOARD ADMIN FOOTER -->
+    <div class="container-fluid py-4 px-4">
+        <div class="bg-light rounded-top p-4">
+            <div class="row">
+                <div class="col-12 col-sm-6 text-center text-sm-start">
+                    &copy; <a href="#">GEOPV.FR</a> Tout droit réservé. 
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIN DASHBOARD ADMIN FOOTER -->
+ 
+{% endblock %}

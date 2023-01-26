@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir les informations des <strong>produits</strong>{% endblock %}
+
+{% block body %}
+    <section class="container w-75 my-5 text-center">
+        <h1 class="mb-3">Liste des <strong>produits</strong> enregistrés</h1>
+        <p class="text-muted mb-3">3 produits seulement, donc rentrés en dur pour l'instant</p>
+        <div class="row">
+            <table class="table table-hover bg-light my-3">
+                <thead class="table-dark">
+                    <tr>
+                        <td>Formule</td>
+                        <td>Prix à la base</td>
+                        <td>Description</td>
+                        <td>Voir</td>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.type }}</td>
+                        <td>{{ product.typeprice }} €</td> 
+                        <td>{{ product.description }}</td>
+                        <td><a href="{{path('app_admin_showProduct', {id: product.id} )}}" ><i class="fa fa-eye"></i></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </section>
+{% endblock %}

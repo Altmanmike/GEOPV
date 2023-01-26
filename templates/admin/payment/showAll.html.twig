@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir les informations des <strong>paiements</strong>{% endblock %}
+
+{% block body %}
+    <section class="container w-75 my-5 text-center">
+        <h1 class="mb-3">Liste des <strong>paiements</strong> enregistrés</h1>
+        <div class="row">
+            <table class="table table-hover bg-light my-3">
+                <thead class="table-dark">
+                    <tr>
+                        <td>N°</td>
+                        <td>Utilisateur</td>
+                        <td>Formule à</td>
+                        <td>Quantité</td>
+                        <td>Prix total</td>
+                        <td>Commandée le</td>
+                        <td>Confirmée le</td>
+                        <td>Voir</td>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for payment in payments|reverse %}
+                    <tr>
+                        <td>{{ payment.id }}</td>
+                        <td>{{ payment.user.email }}</td>
+                        <td>{{ payment.priceunit }} €</td>
+                        <td>{{ payment.quantity }}</td>
+                        <td>{{ payment.totalprice }} €</td>
+                        <td>{{ payment.createdAt.format('d/m/Y') }}</td>
+                        <td>{% if payment.completedAt != null %}{{ payment.completedAt.format('d/m/Y') }}{% else %} En attente{% endif %}</td>
+                        <td><a href="{{path('app_admin_showPayment', {id: payment.id} )}}" class="text-center"><i class="fa fa-eye"></i></a></td>                        
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </section>
+{% endblock %}

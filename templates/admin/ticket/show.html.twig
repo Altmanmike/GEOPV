@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir les informations du ticket{% endblock %}
+
+{% block body %}
+
+    <section class="container mx-auto my-5">
+        <div class="card text-center w-50 mx-auto">
+            <div class="card-header">
+                <h1 class="card-title">Ticket n°{{ ticket.id }}</h1>
+            </div>
+            <div class="card-body">                
+                <p class="card-text mb-4">Envoyé par: {{ ticket.user.firstname }} {{ ticket.user.lastname }}</p>
+                <p class="card-text mb-4">Titre: {{ ticket.title }}</p> 
+                <p class="card-text">Contenu: {{ ticket.content }}</p>      
+            </div>
+            <div class="card-footer">
+                <p class="card-text">Crée le: {{ ticket.createdAt.format('d/m/Y') }}</p>
+            </div>            
+        </div>
+        <div class="container w-50 text-center mx-auto mt-4">
+        {% if ticket.completedAt == null %}
+            <a href="{{ path('app_admin_closeTicket', {id: ticket.id}) }}" class="btn btn-danger" style="margin-left:10px;width:100px;height:35px"><i class="fa fa-check"></i> Clore</a>
+        {% else %}
+            <h2><mark>Le ticket a déjà été fermé (résolu).</mark></h2>
+        {% endif %}
+        </div>
+    </section>  
+
+    {% for answer in answers %}
+    
+    <section class="container mx-auto my-5">
+        <div class="card text-center w-50 mx-auto">
+            <div class="card-header">
+                <h5 class="card-title">Réponses n°{{ answer.id }}</h5>
+            </div>
+            <div class="card-body">                
+                <p class="card-text mb-4">Envoyé par: {{ answer.user.firstname }} {{ answer.user.lastname }}</p>
+                <p class="card-text">Contenu: {{ answer.content }} </p>         
+            </div>
+            <div class="card-footer">
+                <p class="card-text">Envoyée le: {{ answer.createdAt.format('d/m/Y') }}</p>
+            </div>
+        </div>
+    </section>  
+
+    {% endfor %}
+
+    {% if ticket.completedAt == null %}
+
+    <section class="container w-75 mx-auto my-5">
+        <h1 class="text-center mb-3">Répondre</h1>
+        {{ form_start(newAnswerForm) }}       
+            {{ form_row(newAnswerForm.content) }}     
+        <button type="submit" class="btn btn-primary btn-lg my-3">Envoyer</button>
+        {{ form_end(newAnswerForm) }}
+    </section>
+
+    {% endif %}
+    
+{% endblock %}

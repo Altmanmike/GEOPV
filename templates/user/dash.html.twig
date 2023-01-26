@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+    
+    <section class="container w-75 my-5">        
+        <div class="row text-center">
+            <h1 class="container my-2">Bienvenue dans votre tableau de bord </h1><br>
+            <p class="container my-2">{{ app.user.firstname }} {{ app.user.lastname }}</p>
+            <div class="container my-2">
+                <img src="{{asset('assets/img/profile.svg')}}" class="profileSVG" alt="" >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 my-3">
+                <div class="card">
+                    <div class="card-body">
+                    <h5 class="card-title">VOTRE PROFIL</h5>
+                    <p class="card-text">Éditer vos informations personnelles.</p>
+                    <a href="{{path('app_user')}}" class="btn btn-danger mt-2">Voir votre profil</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 my-3">
+                <div class="card">
+                    <div class="card-body">
+                    <h5 class="card-title">VOS PAIEMENTS</h5>
+                    <p class="card-text">Liste des paiements effectués.</p>
+                    <a href="{{path('app_user_showPayments')}}" class="btn btn-danger mt-2">Voir vos paiements</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 my-3">
+                <div class="card">
+                    <div class="card-body">
+                    <h5 class="card-title">VOS TICKETS</h5>
+                    <p class="card-text">Liste des tickets et des réponses envoyés.</p>
+                    <a href="{{path('app_user_showTickets')}}" class="btn btn-danger mt-2">Voir vos tickets & réponses <span class="badge text-bg-primary">4</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 my-3">
+                <div class="card">
+                    <div class="card-body">
+                    <h5 class="card-title">ACCES À L'APPLICATION <span class="badge text-bg-danger float-end">APPLICATION GEOPV</span></h5>
+                    {% if app.user.isIsAppAcces() %}
+                    <p class="card-text">Vous pouvez encore accéder à l'application!</p>
+                    <a href="{{path('app_geopv')}}" class="btn btn-danger mt-2" ><i class="fa fa-map"></i> Accès à GeoPV</a>
+                    {% else %} 
+                    <p>Choisissez une formule d'accès à GeoPV!</p>
+                    <a href="{{path('app_main')}}#prix" class="btn btn-danger mt-2" ><i class="fa fa-url"></i> Acheter un accès</a>
+                    {% endif %} 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>    
+
+{% endblock %}

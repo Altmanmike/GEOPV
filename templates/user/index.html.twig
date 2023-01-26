@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+    
+    <section class="container w-75 my-5">
+        <div class="row text-center">
+            <h2>
+                {% if app.user.isIsAppAcces() %} 
+                <p>Vous pouvez encore accéder à l'application</p>
+                <a href="{{path('app_geopv')}}" class="btn btn-danger mt-4" ><i class="fa fa-map"></i> ici</a>
+            </h2>
+        </div>
+        <div class="row text-center">
+            <h2>
+                {% else %} 
+                <p>Veuillez sélectionner/acheter une formule d'accès à l'application afin d'en profiter!</p>
+                <a href="{{path('app_main')}}#prix" class="btn btn-danger mt-4" ><i class="fa fa-url"></i> ici</a>
+                {% endif %} 
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col my-5">
+                <h1>Éditer informations de profil</h1>
+
+                {{ form_start(profileEditForm) }}
+                    <fieldset class="my-3">
+                        <legend><h2>Identité</h2></legend>
+                        {{ form_row(profileEditForm.email, { 'value': app.user.email }) }}
+                        {{ form_row(profileEditForm.firstname, { 'value': app.user.firstname }) }}
+                        {{ form_row(profileEditForm.lastname, { 'value': app.user.lastname }) }}
+                    </fieldset>
+                    <fieldset class="my-3">
+                        <legend><h2>Coordonnées</h2></legend>
+                        {{ form_row(profileEditForm.phone, { 'value': app.user.phone }) }}
+                        {{ form_row(profileEditForm.company, { 'value': app.user.company }) }}                      
+                        {{ form_row(profileEditForm.zipcode, { 'value': app.user.zipcode }) }}
+                        {{ form_row(profileEditForm.city, { 'value': app.user.city }) }}
+                    </fieldset>                  
+                    <button type="submit" class="btn btn-primary btn-lg my-3">Mettre à jour</button>
+                {{ form_end(profileEditForm) }}
+                
+            </div>
+        </div>
+    </section>    
+    
+{% endblock %}

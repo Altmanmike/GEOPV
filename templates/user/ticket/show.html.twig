@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir les informations de mon ticket{% endblock %}
+
+{% block body %}
+
+    <section class="container mx-auto my-5">
+        <div class="card text-center w-50 mx-auto">
+            <div class="card-header">
+                <h1 class="card-title">Ticket n°{{ ticket.id }}</h1>
+            </div>
+            <div class="card-body">                
+                <p class="card-text mb-4">Titre: {{ ticket.title }}</p>
+                <p class="card-text mb-4">Contenu: {{ ticket.content }}</p> 
+                <p class="card-text">Crée le: {{ ticket.createdAt.format('d/m/Y') }}</p>      
+            </div>
+            <div class="card-footer">
+                <p class="card-text">Résolu le: {% if ticket.completedAt != null %}{{ ticket.completedAt.format('d/m/Y') }}{% else %} En attente{% endif %}</p>
+            </div>            
+        </div>
+    </section>
+    
+    {% for answer in answers %}
+    <section class="container mx-auto my-5">
+        <div class="card text-center w-50 mx-auto">
+            <div class="card-header">
+                <h5 class="card-title">Réponses n°{{ answer.id }}</h5>
+            </div>
+            <div class="card-body">                
+                <p class="card-text mb-4">Envoyé par: {{ answer.user.firstname }} {{ answer.user.lastname }}</p>
+                <p class="card-text">Contenu: {{ answer.content }} </p>         
+            </div>
+            <div class="card-footer">
+                <p class="card-text">Envoyée le: {{ answer.createdAt.format('d/m/Y') }}</p>
+            </div>
+        </div>
+    </section>  
+    {% endfor %}
+
+    <section class="container w-75 mx-auto my-5">
+        <h1 class="text-center mb-3">Répondre</h1>
+        {{ form_start(newAnswerForm) }}       
+            {{ form_row(newAnswerForm.content) }}     
+        <button type="submit" class="btn btn-primary btn-lg my-3">Envoyer</button>
+        {{ form_end(newAnswerForm) }}
+    </section>
+
+{% endblock %}

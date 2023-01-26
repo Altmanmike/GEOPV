@@ -11,6 +11,7 @@
                     <tr>
                         <td>N°</td>
                         <td>Utilisateur</td>
+                        <td>Aperçu</td>
                         <td>Titre de l'article</td>
                         <td>Contenu de l'article</td>
                         <td>Crée le</td>
@@ -22,6 +23,7 @@
                     <tr>
                         <td>{{ post.id }}</td>
                         <td>{{ post.user.email }}</td>
+                        <td><img src="{{ post.picture }}" class="img-thumbnail" alt="..."></td>
                         <td>{{ post.title }}</td>
                         <td>{{ post.content }}</td>
                         <td>{{ post.createdAt.format('d/m/Y') }}</td>

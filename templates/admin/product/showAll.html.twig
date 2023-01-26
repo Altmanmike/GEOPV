@@ -10,6 +10,8 @@
             <table class="table table-hover bg-light my-3">
                 <thead class="table-dark">
                     <tr>
+                        <td>Produit</td>
+                        <td>Titre</td>
                         <td>Formule</td>
                         <td>Prix à la base</td>
                         <td>Description</td>
@@ -19,6 +21,8 @@
                 <tbody>
                 {% for product in products %}
                     <tr>
+                        <td><img src="{{ product.picture }}" class="img-thumbnail" alt="..."></td>
+                        <td>{{ product.title }}</td>
                         <td>{{ product.type }}</td>
                         <td>{{ product.typeprice }} €</td> 
                         <td>{{ product.description }}</td>

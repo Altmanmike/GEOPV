@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une nouvelle catégorie de produits{% endblock %}
+
+{% block body %}
+
+    <section class="container w-75 mx-auto my-5">
+        <h1 class="text-center mb-3">nouvelle catégorie produits</h1>
+        {{ form_start(newCategoryProductForm) }}
+            {{ form_row(newCategoryProductForm.title) }}
+            {{ form_row(newCategoryProductForm.content) }}
+            {{ form_row(newCategoryProductForm.picture) }}
+            <button type="submit" class="btn btn-primary btn-lg my-3">Envoyer</button>
+        {{ form_end(newCategoryProductForm) }}
+    </section>
+
+{% endblock %}

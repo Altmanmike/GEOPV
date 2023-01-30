@@ -25,7 +25,7 @@ class Ticket
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $created_at = null;
 
-    #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updated_at = null;
 
     #[ORM\OneToMany(mappedBy: 'ticket', targetEntity: Answer::class, orphanRemoval: true)]
@@ -34,6 +34,10 @@ class Ticket
     #[ORM\ManyToOne(inversedBy: 'tickets')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'tickets')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?CategoryTicket $categoryTicket = null;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $completed_at = null;
@@ -117,6 +121,18 @@ class Ticket
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getCategoryTicket(): ?CategoryTicket
+    {
+        return $this->categoryTicket;
+    }
+
+    public function setCategoryTicket(?CategoryTicket $categoryTicket): self
+    {
+        $this->categoryTicket = $categoryTicket;
 
         return $this;
     }

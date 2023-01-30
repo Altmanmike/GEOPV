@@ -33,10 +33,14 @@ class Product
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $created_at = null;
 
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?CategoryProduct $categoryProduct = null;
+
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Payment::class)]
     private Collection $payments;
 
-    #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updated_at = null;
 
     public function __construct()
@@ -130,6 +134,18 @@ class Product
     public function setUpdatedAt(?\DateTimeImmutable $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getCategoryProduct(): ?CategoryProduct
+    {
+        return $this->categoryProduct;
+    }
+
+    public function setCategoryProduct(?CategoryProduct $categoryProduct): self
+    {
+        $this->categoryProduct = $categoryProduct;
 
         return $this;
     }

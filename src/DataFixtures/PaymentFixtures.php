@@ -99,9 +99,9 @@ class PaymentFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             UserFixtures::class, 
-            ProductFixtures::class,
+            ProductFixtures::class/*,
             DeliveryFixtures::class,
-            InvoiceFixtures::class
+            InvoiceFixtures::class*/
         ]; 
     }
 }

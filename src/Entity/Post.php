@@ -28,8 +28,12 @@ class Post
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $created_at = null;
 
-    #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updated_at = null;
+
+    #[ORM\ManyToOne(inversedBy: 'posts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?CategoryPost $categoryPost = null;
 
     #[ORM\OneToMany(mappedBy: 'post', targetEntity: Comment::class, orphanRemoval: true)]
     private Collection $comments;
@@ -117,6 +121,18 @@ class Post
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getCategoryPost(): ?CategoryPost
+    {
+        return $this->categoryPost;
+    }
+
+    public function setCategoryPost(?CategoryPost $categoryPost): self
+    {
+        $this->categoryPost = $categoryPost;
 
         return $this;
     }

@@ -23,7 +23,7 @@ class TicketFixtures extends Fixture implements DependentFixtureInterface
             $ticket = new Ticket();
             $ticket->setTitle($faker->sentence());
             $ticket->setContent($faker->paragraph());
-            $ticket->setCategoryTicket(rand(1, 3));
+            //$ticket->setCategoryTicket(rand(1, 3)); PROBLEME ON CHARGE 9A AVANT....
             $ticket->setCreatedAt(new \DateTimeImmutable());
 
             // On charge les utilisateurs enregistrés via addReference avec getReference

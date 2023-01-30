@@ -22,8 +22,8 @@ class PaymentFixtures extends Fixture implements DependentFixtureInterface
             $payment = new Payment();
             // Status est l'état de la formule/produit c'est-à-dire soit: ouvert / en_attente / payé
             $payment->setStatus(rand(1, 3));
-            //$payment->setDelivery($i++);
-            //$payment->setInvoice($i++);
+            $payment->setDelivery($this->getReference('delivery_'.($i+1)));
+            $payment->setInvoice($this->getReference('invoice_'.($i+1)));
 
             if( $payment->getStatus() == 3 )
             {
@@ -45,48 +45,36 @@ class PaymentFixtures extends Fixture implements DependentFixtureInterface
                 $payment->setQuantity(1);
                 $payment->setPriceUnit(19.00);
                 $payment->setTotalPrice($payment->getPriceUnit() * $payment->getQuantity());
-                //$payment->setDelivery();
-                //$payment->setInvoice();
             } elseif($i == 4) {
                 $payment->setUser($this->getReference('user_1'));
                 $payment->setProduct($this->getReference('product_1'));
                 $payment->setQuantity(6);
                 $payment->setPriceUnit(19.00);
                 $payment->setTotalPrice($payment->getPriceUnit() * $payment->getQuantity());
-                //$payment->setDelivery();
-                //$payment->setInvoice();
             } elseif ($i == 1 || $i == 2) {
                 $payment->setUser($this->getReference('user_2'));
                 $payment->setProduct($this->getReference('product_2'));
                 $payment->setQuantity(1);
                 $payment->setPriceUnit(95.00);
                 $payment->setTotalPrice($payment->getPriceUnit() * $payment->getQuantity());
-                //$payment->setDelivery();
-                //$payment->setInvoice();
             } elseif ($i == 3) {
                 $payment->setUser($this->getReference('user_2'));
                 $payment->setProduct($this->getReference('product_2'));
                 $payment->setQuantity(2);
                 $payment->setPriceUnit(95.00);
                 $payment->setTotalPrice($payment->getPriceUnit() * $payment->getQuantity());
-                //$payment->setDelivery();
-                //$payment->setInvoice();
             } elseif ($i == 5 || $i == 7) {
                 $payment->setUser($this->getReference('user_3'));
                 $payment->setProduct($this->getReference('product_3'));
                 $payment->setQuantity(1);
                 $payment->setPriceUnit(179.00);
                 $payment->setTotalPrice($payment->getPriceUnit() * $payment->getQuantity());
-                //$payment->setDelivery();
-                //$payment->setInvoice();
             } elseif ($i == 6) {
                 $payment->setUser($this->getReference('user_3'));
                 $payment->setProduct($this->getReference('product_3'));
                 $payment->setQuantity(3);
                 $payment->setPriceUnit(179.00);
                 $payment->setTotalPrice($payment->getPriceUnit() * $payment->getQuantity());
-                //$payment->setDelivery();
-                //$payment->setInvoice();
             } 
 
             $manager->persist($payment); 
@@ -99,9 +87,9 @@ class PaymentFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             UserFixtures::class, 
-            ProductFixtures::class/*,
+            ProductFixtures::class,
             DeliveryFixtures::class,
-            InvoiceFixtures::class*/
+            InvoiceFixtures::class
         ]; 
     }
 }

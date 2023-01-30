@@ -23,10 +23,6 @@ class Invoice
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\ManyToOne(inversedBy: 'invoices')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Payment $payment = null;
-
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $completed_at = null;
 
@@ -72,18 +68,6 @@ class Invoice
     public function setUser(?User $user): self
     {
         $this->user = $user;
-
-        return $this;
-    }
-
-    public function getPayment(): ?Payment
-    {
-        return $this->payment;
-    }
-
-    public function setPayment(?Payment $payment): self
-    {
-        $this->payment = $payment;
 
         return $this;
     }

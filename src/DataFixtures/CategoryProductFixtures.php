@@ -14,8 +14,8 @@ class CategoryProductFixtures extends Fixture implements DependentFixtureInterfa
         // Ajouter nos 5 catégories de produits à la main ici (champs: title, content, picture, date...)
         //  CATEGORIE PRODUIT 1
         $categoryProduct = new CategoryProduct();
-        $categoryProduct->setTitle('Vaccin');
-        $categoryProduct->setContent('Vaccination covid-19');
+        $categoryProduct->setTitle('Vêtements');
+        $categoryProduct->setContent('Habits avec le logo de l\'application');
         $categoryProduct->setPicture('https://via.placeholder.com/200');
 		$categoryProduct->setCreatedAt(new \DateTimeImmutable());		
         $this->addReference('categoryProduct_1', $categoryProduct);
@@ -24,8 +24,8 @@ class CategoryProductFixtures extends Fixture implements DependentFixtureInterfa
 
         //  CATEGORIE PRODUIT 2
         $categoryProduct = new CategoryProduct();
-        $categoryProduct->setTitle('Achats');
-        $categoryProduct->setContent('Achats liés à la covid-19');
+        $categoryProduct->setTitle('Casquettes');
+        $categoryProduct->setContent('Casquette avec le logo de l\'application');
         $categoryProduct->setPicture('https://via.placeholder.com/200');
 		$categoryProduct->setCreatedAt(new \DateTimeImmutable());		
         $this->addReference('categoryProduct_2', $categoryProduct);
@@ -34,31 +34,11 @@ class CategoryProductFixtures extends Fixture implements DependentFixtureInterfa
 
         // CATEGORIE PRODUIT 3
         $categoryProduct = new CategoryProduct();
-        $categoryProduct->setTitle('International');
-        $categoryProduct->setContent('La pandémie dans le monde entier');
+        $categoryProduct->setTitle('Autres');
+        $categoryProduct->setContent('Divers produits de l\'application');
         $categoryProduct->setPicture('https://via.placeholder.com/200');
 		$categoryProduct->setCreatedAt(new \DateTimeImmutable());
         $this->addReference('categoryProduct_3', $categoryProduct);
-
-        $manager->persist($categoryProduct);
-
-        //  CATEGORIE PRODUIT 4
-        $categoryProduct = new CategoryProduct();
-        $categoryProduct->setTitle('Occident');
-        $categoryProduct->setContent('La covid-19 pas loin de chez vous');
-        $categoryProduct->setPicture('https://via.placeholder.com/200');
-		$categoryProduct->setCreatedAt(new \DateTimeImmutable());     
-        $this->addReference('categoryProduct_4', $categoryProduct);
-
-        $manager->persist($categoryProduct);
-
-        //  CATEGORIE PRODUIT 5
-        $categoryProduct = new CategoryProduct();
-        $categoryProduct->setTitle('Matériel');
-        $categoryProduct->setContent('Nouveaux et anciens matériel médicaux');
-        $categoryProduct->setPicture('hhttps://via.placeholder.com/200');
-		$categoryProduct->setCreatedAt(new \DateTimeImmutable());		
-        $this->addReference('categoryProduct_5', $categoryProduct);
 
         $manager->persist($categoryProduct);
 

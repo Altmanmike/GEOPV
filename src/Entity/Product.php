@@ -30,11 +30,15 @@ class Product
     #[ORM\Column(length: 255)]
     private ?string $picture = null;
 
+    #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
+    private ?\DateTimeImmutable $created_at = null;
+
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Payment::class)]
     private Collection $payments;
 
     public function __construct()
     {
+        $this->created_at = new \DateTimeImmutable();
         $this->payments = new ArrayCollection();
     }
 
@@ -99,6 +103,18 @@ class Product
     public function setPicture(string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    {
+        $this->created_at = $created_at;
 
         return $this;
     }

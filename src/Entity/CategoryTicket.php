@@ -25,11 +25,11 @@ class CategoryTicket
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $created_at = null;
 
+    #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
+    private ?\DateTimeImmutable $updated_at = null;
+
     #[ORM\OneToMany(mappedBy: 'categoryTickets', targetEntity: Ticket::class)]
     private Collection $tickets;
-
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $completed_at = null;
 
     public function __construct()
     {
@@ -78,14 +78,14 @@ class CategoryTicket
         return $this;
     }
 
-    public function getCompletedAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
-        return $this->completed_at;
+        return $this->updated_at;
     }
 
-    public function setCompletedAt(?\DateTimeImmutable $completed_at): self
+    public function setUpdatedAt(?\DateTimeImmutable $updated_at): self
     {
-        $this->completed_at = $completed_at;
+        $this->updated_at = $updated_at;
 
         return $this;
     }

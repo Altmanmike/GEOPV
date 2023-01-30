@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use Faker\Factory;
 use App\Entity\Ticket;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -14,12 +15,16 @@ class TicketFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
+        // Génération d'une DataFixtures de fausses données de réponses d'un ticket d'un utilisateur via FakerPHP
+        $faker = Factory::create('fr_FR');
+
         for($i=0; $i < 3; $i++)
         {
             $ticket = new Ticket();
             $ticket->setTitle($faker->sentence());
             $ticket->setContent($faker->paragraph());
             $ticket->setCategoryTicket(rand(1, 3));
+            $ticket->setCreatedAt(new \DateTimeImmutable());
 
             // On charge les utilisateurs enregistrés via addReference avec getReference
             if($i == 0) {

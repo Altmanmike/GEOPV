@@ -25,6 +25,9 @@ class Ticket
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $created_at = null;
 
+    #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
+    private ?\DateTimeImmutable $updated_at = null;
+
     #[ORM\OneToMany(mappedBy: 'ticket', targetEntity: Answer::class, orphanRemoval: true)]
     private Collection $answers;
 
@@ -82,6 +85,42 @@ class Ticket
         return $this;
     }
 
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updated_at): self
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getCompletedAt(): ?\DateTimeImmutable
+    {
+        return $this->completed_at;
+    }
+
+    public function setCompletedAt(?\DateTimeImmutable $completed_at): self
+    {
+        $this->completed_at = $completed_at;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, Answer>
      */
@@ -108,30 +147,6 @@ class Ticket
                 $answer->setTicket(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    public function getCompletedAt(): ?\DateTimeImmutable
-    {
-        return $this->completed_at;
-    }
-
-    public function setCompletedAt(?\DateTimeImmutable $completed_at): self
-    {
-        $this->completed_at = $completed_at;
 
         return $this;
     }

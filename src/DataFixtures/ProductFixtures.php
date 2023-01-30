@@ -44,6 +44,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $product->setType('4');
         $product->setTypePrice(60.00);
         $product->setDescription('Teeshirt de l\'application pour faire du sport');
+        $product->setPicture($_SERVER['DOCUMENT_ROOT'].'/assets/img/geopv_product_teeshirt.png');
         $this->addReference('product_4', $product);
 
         $manager->persist($product);
@@ -53,6 +54,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $product->setType('4');
         $product->setTypePrice(23.00);
         $product->setDescription('Casquette noire avec le logo de l\'application');
+        $product->setPicture($_SERVER['DOCUMENT_ROOT'].'/assets/img/geopv_product_black_cap.png');
         $this->addReference('product_5', $product);
 
         $manager->persist($product);
@@ -62,6 +64,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $product->setType('4');
         $product->setTypePrice(25.00);
         $product->setDescription('Casquette rouge avec le logo de l\'application');
+        $product->setPicture($_SERVER['DOCUMENT_ROOT'].'/assets/img/geopv_product_red_cap.png');
         $this->addReference('product_6', $product);
 
         $manager->persist($product);
@@ -71,6 +74,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $product->setType('4');
         $product->setTypePrice(4.00);
         $product->setDescription('Porte-clé avec le logo de l\'application');
+        $product->setPicture($_SERVER['DOCUMENT_ROOT'].'/assets/img/geopv_product_key.png');
         $this->addReference('product_7', $product);
 
         $manager->persist($product);

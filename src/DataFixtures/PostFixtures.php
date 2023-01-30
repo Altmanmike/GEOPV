@@ -18,7 +18,7 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
         $post = new Post();
         $post->setTitle('Entrer des vrai titre pour le site');
         $post->setContent('et des vrai contenu pris sur un site officiel');
-        $post->setPicture('https://ssdfsdfsdfsdfsdf'); 
+        $post->setPicture('https://via.placeholder.com/700x500');
 		$post->setCreatedAt(new \DateTimeImmutable());
         $post->setUser($this->getReference('user_1'));
         $this->addReference('post_1', $post);
@@ -29,7 +29,7 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
 		$post = new Post();
         $post->setTitle('Entrer des vrai titre pour le site');
         $post->setContent('et des vrai contenu pris sur un site officiel');
-        $post->setPicture('https://ssdfsdfsdfsdfsdf'); 
+        $post->setPicture('https://via.placeholder.com/700x500');
 		$post->setCreatedAt(new \DateTimeImmutable());
         $post->setUser($this->getReference('user_2'));
         $this->addReference('post_2', $post);
@@ -40,7 +40,7 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
 		$post = new Post();
         $post->setTitle('Entrer des vrai titre pour le site');
         $post->setContent('et des vrai contenu pris sur un site officiel');
-        $post->setPicture('https://ssdfsdfsdfsdfsdf'); 
+        $post->setPicture('https://via.placeholder.com/700x500');
 		$post->setCreatedAt(new \DateTimeImmutable());
         $post->setUser($this->getReference('user_3'));
         $this->addReference('post_3', $post);
@@ -51,7 +51,7 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
 		$post = new Post();
         $post->setTitle('Entrer des vrai titre pour le site');
         $post->setContent('et des vrai contenu pris sur un site officiel');
-        $post->setPicture('https://ssdfsdfsdfsdfsdf'); 
+        $post->setPicture('https://via.placeholder.com/700x500');
 		$post->setCreatedAt(new \DateTimeImmutable());
         $post->setUser($this->getReference('user_4'));
         $this->addReference('post_4', $post);

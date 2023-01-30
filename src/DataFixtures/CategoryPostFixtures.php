@@ -16,7 +16,7 @@ class CategoryPostFixtures extends Fixture implements DependentFixtureInterface
         $categoryPost = new CategoryPost();
         $categoryPost->setTitle('Vaccin');
         $categoryPost->setContent('Vaccination covid-19');
-        $categoryPost->setPicture('https://ssdfsdfsdfsdfsdf'); 
+        $categoryPost->setPicture('https://via.placeholder.com/200x100');
 		$categoryPost->setCreatedAt(new \DateTimeImmutable());		
         $this->addReference('categoryPost_1', $categoryPost);
 
@@ -26,7 +26,7 @@ class CategoryPostFixtures extends Fixture implements DependentFixtureInterface
         $categoryPost = new CategoryPost();
         $categoryPost->setTitle('Achats');
         $categoryPost->setContent('Achats liés à la covid-19');
-        $categoryPost->setPicture('https://ssdfsdfsdfsdfsdf');  
+        $categoryPost->setPicture('https://via.placeholder.com/200x100');
 		$categoryPost->setCreatedAt(new \DateTimeImmutable());		
         $this->addReference('categoryPost_2', $categoryPost);
 
@@ -36,7 +36,7 @@ class CategoryPostFixtures extends Fixture implements DependentFixtureInterface
         $categoryPost = new CategoryPost();
         $categoryPost->setTitle('International');
         $categoryPost->setContent('La pandémie dans le monde entier');
-        $categoryPost->setPicture('https://ssdfsdfsdfsdfsdf'); 
+        $categoryPost->setPicture('https://via.placeholder.com/200x100');
 		$categoryPost->setCreatedAt(new \DateTimeImmutable());
         $this->addReference('categoryPost_3', $categoryPost);
 
@@ -46,7 +46,7 @@ class CategoryPostFixtures extends Fixture implements DependentFixtureInterface
         $categoryPost = new CategoryPost();
         $categoryPost->setTitle('Occident');
         $categoryPost->setContent('La covid-19 pas loin de chez vous');
-        $categoryPost->setPicture('https://ssdfsdfsdfsdfsdf');
+        $categoryPost->setPicture('https://via.placeholder.com/200x100');
 		$categoryPost->setCreatedAt(new \DateTimeImmutable());     
         $this->addReference('categoryPost_4', $categoryPost);
 
@@ -56,7 +56,7 @@ class CategoryPostFixtures extends Fixture implements DependentFixtureInterface
         $categoryPost = new CategoryPost();
         $categoryPost->setTitle('Matériel');
         $categoryPost->setContent('Nouveaux et anciens matériel médicaux');
-        $categoryPost->setPicture('https://ssdfsdfsdfsdfsdf'); 
+        $categoryPost->setPicture('https://via.placeholder.com/200x100');
 		$categoryPost->setCreatedAt(new \DateTimeImmutable());		
         $this->addReference('categoryPost_5', $categoryPost);
 
@@ -66,7 +66,7 @@ class CategoryPostFixtures extends Fixture implements DependentFixtureInterface
         $categoryPost = new CategoryPost();
         $categoryPost->setTitle('Vote et lois');
         $categoryPost->setContent('Le juridique et la maladie');
-        $categoryPost->setPicture('https://ssdfsdfsdfsdfsdf');
+        $categoryPost->setPicture('https://via.placeholder.com/200x100');
 		$categoryPost->setCreatedAt(new \DateTimeImmutable());		
         $this->addReference('categoryPost_6', $categoryPost);
 

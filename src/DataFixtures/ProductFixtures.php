@@ -39,6 +39,42 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
 
         $manager->persist($product);
 
+        // PRODUIT 4: teeshirt noir
+        $product = new Product();
+        $product->setType('4');
+        $product->setTypePrice(60.00);
+        $product->setDescription('Teeshirt de l\'application pour faire du sport');
+        $this->addReference('product_4', $product);
+
+        $manager->persist($product);
+
+        // PRODUIT 5: casquette noire
+        $product = new Product();
+        $product->setType('4');
+        $product->setTypePrice(23.00);
+        $product->setDescription('Casquette noire avec le logo de l\'application');
+        $this->addReference('product_5', $product);
+
+        $manager->persist($product);
+
+        // PRODUIT 6: casquette red
+        $product = new Product();
+        $product->setType('4');
+        $product->setTypePrice(25.00);
+        $product->setDescription('Casquette rouge avec le logo de l\'application');
+        $this->addReference('product_6', $product);
+
+        $manager->persist($product);
+
+        // PRODUIT 7: porte-clé
+        $product = new Product();
+        $product->setType('4');
+        $product->setTypePrice(4.00);
+        $product->setDescription('Porte-clé avec le logo de l\'application');
+        $this->addReference('product_7', $product);
+
+        $manager->persist($product);
+
         $manager->flush();
     }
 

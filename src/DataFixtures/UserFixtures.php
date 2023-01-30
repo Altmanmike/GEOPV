@@ -61,7 +61,9 @@ class UserFixtures extends Fixture
                 $this->addReference('user_2', $user);
             } elseif ($i == 30) {
                 $this->addReference('user_3', $user);
-            }         
+            } elseif ($i == 40) {
+                $this->addReference('user_4', $user);
+            }
 
             $manager->persist($user);        
         }

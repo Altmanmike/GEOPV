@@ -22,8 +22,8 @@ class PaymentFixtures extends Fixture implements DependentFixtureInterface
             $payment = new Payment();
             // Status est l'état de la formule/produit c'est-à-dire soit: ouvert / en_attente / payé
             $payment->setStatus(rand(1, 3));
-            $payment->setDelivery($i++);
-            $payment->setInvoice($i++);
+            //$payment->setDelivery($i++);
+            //$payment->setInvoice($i++);
 
             if( $payment->getStatus() == 3 )
             {

@@ -12,23 +12,33 @@ class CategoryProductFixtures extends Fixture implements DependentFixtureInterfa
     public function load(ObjectManager $manager): void    
     {
         // Ajouter nos 5 catégories de produits à la main ici (champs: title, content, picture, date...)
-        //  CATEGORIE PRODUIT 1
+        //  CATEGORIE PRODUIT 2
         $categoryProduct = new CategoryProduct();
-        $categoryProduct->setTitle('Vêtements');
-        $categoryProduct->setContent('Habits avec le logo de l\'application');
+        $categoryProduct->setTitle('Formules abonnements');
+        $categoryProduct->setContent('Abonnement d\'accès à l\'application');
         $categoryProduct->setPicture('https://via.placeholder.com/200');
-		$categoryProduct->setCreatedAt(new \DateTimeImmutable());		
+        $categoryProduct->setCreatedAt(new \DateTimeImmutable());
         $this->addReference('categoryProduct_1', $categoryProduct);
 
         $manager->persist($categoryProduct);
 
-        //  CATEGORIE PRODUIT 2
+        // CATEGORIE PRODUIT 2
+        $categoryProduct = new CategoryProduct();
+        $categoryProduct->setTitle('Vêtements');
+        $categoryProduct->setContent('Habits avec le logo de l\'application');
+        $categoryProduct->setPicture('https://via.placeholder.com/200');
+		$categoryProduct->setCreatedAt(new \DateTimeImmutable());
+        $this->addReference('categoryProduct_2', $categoryProduct);
+
+        $manager->persist($categoryProduct);
+
+        // CATEGORIE PRODUIT 3
         $categoryProduct = new CategoryProduct();
         $categoryProduct->setTitle('Casquettes');
         $categoryProduct->setContent('Casquette avec le logo de l\'application');
         $categoryProduct->setPicture('https://via.placeholder.com/200');
 		$categoryProduct->setCreatedAt(new \DateTimeImmutable());		
-        $this->addReference('categoryProduct_2', $categoryProduct);
+        $this->addReference('categoryProduct_3', $categoryProduct);
 
         $manager->persist($categoryProduct);
 
@@ -38,7 +48,7 @@ class CategoryProductFixtures extends Fixture implements DependentFixtureInterfa
         $categoryProduct->setContent('Divers produits de l\'application');
         $categoryProduct->setPicture('https://via.placeholder.com/200');
 		$categoryProduct->setCreatedAt(new \DateTimeImmutable());
-        $this->addReference('categoryProduct_3', $categoryProduct);
+        $this->addReference('categoryProduct_4', $categoryProduct);
 
         $manager->persist($categoryProduct);
 
@@ -48,7 +58,8 @@ class CategoryProductFixtures extends Fixture implements DependentFixtureInterfa
     public function getDependencies(): array
     {
         return [
-            UserFixtures::class
+            UserFixtures::class,
+            CategoryPostFixtures::class
         ]; 
     }
 }

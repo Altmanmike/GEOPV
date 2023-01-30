@@ -21,6 +21,7 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
         $post->setPicture('https://via.placeholder.com/700x500');
 		$post->setCreatedAt(new \DateTimeImmutable());
         $post->setUser($this->getReference('user_1'));
+        $post->setCategoryPost($this->getReference('categoryPost_3'));
         $this->addReference('post_1', $post);
 
         $manager->persist($post);
@@ -32,6 +33,7 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
         $post->setPicture('https://via.placeholder.com/700x500');
 		$post->setCreatedAt(new \DateTimeImmutable());
         $post->setUser($this->getReference('user_2'));
+        $post->setCategoryPost($this->getReference('categoryPost_1'));
         $this->addReference('post_2', $post);
 
         $manager->persist($post);
@@ -43,6 +45,7 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
         $post->setPicture('https://via.placeholder.com/700x500');
 		$post->setCreatedAt(new \DateTimeImmutable());
         $post->setUser($this->getReference('user_3'));
+        $post->setCategoryPost($this->getReference('categoryPost_2'));
         $this->addReference('post_3', $post);
 
         $manager->persist($post);
@@ -54,6 +57,7 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
         $post->setPicture('https://via.placeholder.com/700x500');
 		$post->setCreatedAt(new \DateTimeImmutable());
         $post->setUser($this->getReference('user_4'));
+        $post->setCategoryPost($this->getReference('categoryPost_5'));
         $this->addReference('post_4', $post);
 
         $manager->persist($post);

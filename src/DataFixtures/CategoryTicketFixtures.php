@@ -12,7 +12,7 @@ class CategoryTicketFixtures extends Fixture implements DependentFixtureInterfac
     public function load(ObjectManager $manager): void    
     {
         // Ajouter nos 2 catégories de tickets à la main ici (champs: title, content, date...)
-        // Ticket 1
+        // Categorie ticket 1
         $categoryTicket = new CategoryTicket();
         $categoryTicket->setTitle('Technique');
         $categoryTicket->setContent('Support technique du site');
@@ -21,7 +21,7 @@ class CategoryTicketFixtures extends Fixture implements DependentFixtureInterfac
 
         $manager->persist($categoryTicket);
 
-        // Ticket 2
+        // Categorie ticket 2
         $categoryTicket = new CategoryTicket();
         $categoryTicket->setTitle('Commercial');
         $categoryTicket->setContent('Support commercial du site');

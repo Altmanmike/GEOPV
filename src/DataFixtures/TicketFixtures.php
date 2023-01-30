@@ -23,18 +23,20 @@ class TicketFixtures extends Fixture implements DependentFixtureInterface
             $ticket = new Ticket();
             $ticket->setTitle($faker->sentence());
             $ticket->setContent($faker->paragraph());
-            //$ticket->setCategoryTicket(rand(1, 3)); PROBLEME ON CHARGE 9A AVANT....
             $ticket->setCreatedAt(new \DateTimeImmutable());
 
             // On charge les utilisateurs enregistrés via addReference avec getReference
             if($i == 0) {
                 $ticket->setUser($this->getReference('user_1'));
+                $ticket->setCategoryTicket($this->getReference('categoryTicket_1'));
                 $this->addReference('ticket_1', $ticket);
             } elseif ($i == 1) {
                 $ticket->setUser($this->getReference('user_2'));
+                $ticket->setCategoryTicket($this->getReference('categoryTicket_1'));
                 $this->addReference('ticket_2', $ticket);
             } elseif ($i == 2) {
                 $ticket->setUser($this->getReference('user_3'));
+                $ticket->setCategoryTicket($this->getReference('categoryTicket_2'));
                 $this->addReference('ticket_3', $ticket);
             }             
 
@@ -47,7 +49,8 @@ class TicketFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies(): array
     {
         return [
-            UserFixtures::class
+            UserFixtures::class,
+            CategoryTicketFixtures::class
         ]; 
     }
 }

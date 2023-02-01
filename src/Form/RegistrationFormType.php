@@ -156,7 +156,7 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'Vous deviez accepter nos termes..',
+                        'message' => 'Vous devriez accepter nos termes..',
                     ]),
                 ],
                 'label' => 'En cochant, veuillez assumer avoir lu le document RGPD et accepté nos conditions générales d\'utilisation..',

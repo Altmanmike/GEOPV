@@ -37,10 +37,141 @@
                         {{ form_row(profileEditForm.company, { 'value': app.user.company }) }}                      
                         {{ form_row(profileEditForm.zipcode, { 'value': app.user.zipcode }) }}
                         {{ form_row(profileEditForm.city, { 'value': app.user.city }) }}
-                    </fieldset>                  
-                    <button type="submit" class="btn btn-primary btn-lg my-3">Mettre à jour</button>
+                    </fieldset>
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">RGPD
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Réglement Général sur la Protection des Données</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body m-3">
+                                <div class="m-4">
+                                    <h2 class="text-center">Conditions générales d'un site web</h2>
+                                </div>
+                                <div class="m-4">
+                                    <p style="text-align:Center;"><span style="font-style:normal;font-weight:bold;text-decoration:underline;">CONDITIONS GÉNÉRALES</span><br><br>Les présentes conditions générales régissent l’utilisation de ce site <span style="font-style:italic;font-weight:normal;">www.geopv.fr</span>.<br>Ce site appartient et est géré par Groupe Ecotrade<br>En utilisant ce site, vous indiquez que vous avez lu et compris les conditions d’utilisation et que vous acceptez de les respecter en tout temps.<br><br>
+                                    </p>
+                                </div>
+                                <div>
+                                    <p style="text-align:Left;"><span style="font-style:normal;font-weight:bold;text-decoration:underline;">Propriété intellectuelle</span><br><br>Tout contenu publié et mis à disposition sur ce site est la propriété de Groupe Ecotrade et de ses créateurs. Cela comprend, mais n’est pas limité aux images, textes, logos, documents, fichiers téléchargeables et tout ce qui contribue à la composition de ce site.
+                                    </p>
+                                </div>
+                                <div class="my-4">
+                                    <p style="text-align:Left;"><span style="font-style:normal;font-weight:bold;text-decoration:underline;">Utilisation acceptable</span><br><br>En tant qu’utilisateur, vous acceptez d’utiliser notre site légalement et de ne pas utiliser ce site pour des fins illicites, à savoir :
+                                    </p>
+                                    <ul class="my-2">
+                                        <li><span>Violer les droits des autres utilisateurs du site</span><br>
+                                        </li>
+                                        <li><span>Violer les droits de propriété intellectuelle des propriétaires du site ou de tout tiers au site</span><br>
+                                        </li>
+                                        <li><span>Pirater le compte d’un autre utilisateur du site</span><br>
+                                        </li>
+                                        <li><span>Agir de toute façon qui pourrait être considérée comme frauduleuse</span><br>
+                                        </li>
+                                        <li><span>Participer à toute activité illégale sur le site</span><br>
+                                        </li>
+                                    </ul>
+                                    <p style="text-align:Left;">Si nous estimons que vous utilisez ce site illégalement ou d’une manière qui viole les conditions d’utilisation acceptable ci-dessus, nous nous réservons le droit de limiter, suspendre ou résilier votre accès à ce site. Nous nous réservons également le droit de prendre toutes les mesures juridiques nécessaires pour vous empêcher d’accéder à notre site.
+                                    </p>
+                                </div>
+                                <div class="my-4">
+                                    <p style="text-align:Left;"><span style="font-style:normal;font-weight:bold;text-decoration:underline;">Comptes</span><br><br>Lorsque vous créez un compte sur notre site, vous acceptez ce qui suit :
+                                    </p>
+                                    <ol class="my-2">
+                                        <li><span>que vous êtes seul responsable de votre compte et de la sécurité et la confidentialité de votre compte, y compris les mots de passe ou les renseignements de nature délicate joints à ce compte, et</span><br>
+                                        </li>
+                                        <li><span>que tous les renseignements personnels que vous nous fournissez par l’entremise de votre compte sont à jour, exacts et véridiques et que vous mettrez à jour vos renseignements personnels s’ils changent.</span><br>
+                                        </li>
+                                    </ol>
+                                    <p style="text-align:Left;">Nous nous réservons le droit de suspendre ou de résilier votre compte si vous utilisez notre site illégalement ou si vous violez les conditions d’utilisation acceptable.
+                                    </p>
+                                </div>
+                                <div class="my-4">
+                                    <p style="text-align:Left;"><span style="font-style:normal;font-weight:bold;text-decoration:underline;">Ventes des biens et services</span><br><br>Ce document régit la vente des biens et services mis à disposition sur notre site.
+                                    </p>
+                                    <p style="text-align:Left;">Les biens que nous offrons comprennent :
+                                    </p><br>
+                                    <ul class="my-2">
+                                        <li><span>Documents et accès informations</span><br></li>
+                                    </ul>
+                                    <p style="text-align:Left;">Les services que nous offrons comprennent :
+                                    </p><br>
+                                    <ul class="my-2">
+                                        <li><span>Calculs cartographiques</span><br></li>
+                                    </ul>
+                                    <p style="text-align:Left;">Les biens et services liés à ce document sont les biens et services qui sont affichés sur notre site au moment où vous y accédez. Cela comprend tous les produits énumérés comme étant en rupture de stock. Toutes les informations, descriptions ou images que nous fournissons sur nos biens et services sont décrites et présentées avec la plus grande précision possible. Cependant, nous ne sommes pas légalement &nbsp;tenus par ces informations, descriptions ou images car nous ne pouvons pas garantir l’exactitude de chaque produit ou service que nous fournissons. Vous acceptez d’acheter ces biens et services à vos propres risques.
+                                    </p>
+                                </div>
+                                <div class="my-4">
+                                    <p style="text-align:Left;"><span style="font-style:normal;font-weight:bold;text-decoration:underline;">Paiements</span><br><br>Nous acceptons les modes de paiement suivants sur ce site :
+                                    </p>
+                                    <ul class="my-2">
+                                        <li><span>Carte bancaire</span><br></li>
+                                    </ul>
+                                    <p style="text-align:Left;">Lorsque vous nous fournissez vos renseignements de paiement, vous nous confirmez que vous avez autorisé l’utilisation et l’accès à l’instrument de paiement que vous avez choisi d’utiliser. En nous fournissant vos détails de paiement, vous confirmez que vous nous autorisez à facturer le montant dû à cet instrument de paiement.<br><br>Si nous estimons que votre paiement a violé une loi ou l’une de nos conditions d’utilisation, nous nous réservons le droit d’annuler votre transaction.
+                                    </p>
+                                    <p style="text-align:Left;"><span style="font-style:italic;font-weight:normal;">Services</span><br><br>Les services seront facturés en totalité à la commande du service.
+                                    </p>
+                                    <p style="text-align:Left;"><span style="font-style:italic;font-weight:normal;">Abonnements</span><br><br>Votre abonnement ne se renouvelle pas automatiquement. Vous serez informé avant votre prochain paiement afin de poursuivre votre abonnement.
+                                    </p>
+                                </div>
+                                <div class="my-4" >
+                                    <p class="my-2" style="text-align:Left;"><span style="font-style:normal;font-weight:bold;text-decoration:underline;">Garanties</span>
+                                    </p>
+                                    <ol class="my-2">
+                                        <li><span class="my-2">Préservation des données personnelles utilisateurs comme le numéro de téléphone et autres coordonnées de contact</span><br></li>
+                                    </ol>
+                                </div>
+                                <div class="my-4">
+                                    <p style="text-align:Left;"><span style="font-style:normal;font-weight:bold;text-decoration:underline;">Limitation de responsabilité</span><br><br>Groupe Ecotrade ou l’un de ses employés sera tenu responsable de tout problème découlant de ce site. Néanmoins, Groupe Ecotrade et ses employés ne seront pas tenus responsables de tout problème découlant de toute utilisation irrégulière de ce site.
+                                    </p>
+                                </div>
+                                <div class="my-4">
+                                    <p style="text-align:Left;"><span style="font-style:normal;font-weight:bold;text-decoration:underline;">Indemnité</span><br><br>En tant qu’utilisateur, vous indemnisez par les présentes Groupe Ecotrade de toute responsabilité, de tout coût, de toute cause d’action, de tout dommage ou de toute dépense découlant de votre utilisation de ce site ou de votre violation de l’une des dispositions énoncées dans le présent document.
+                                    </p>
+                                </div>
+                                <div class="my-4">
+                                    <p style="text-align:Left;"><span style="font-style:normal;font-weight:bold;text-decoration:underline;">Lois applicables</span><br><br>Ce document est soumis aux lois applicables en France et vise à se conformer à ses règles et règlements nécessaires. Cela inclut la réglementation à l’échelle de l’UE énoncée dans le RGPD.
+                                    </p>
+                                </div>
+                                <div class="my-4">
+                                    <p style="text-align:Left;"><span style="font-style:normal;font-weight:bold;text-decoration:underline;">Divisibilité</span><br><br>Si, à tout moment, l’une des dispositions énoncées dans le présent document est jugée incompatible ou invalide en vertu des lois applicables, ces dispositions seront considérées comme nulles et seront retirées du présent document. Toutes les autres dispositions ne seront pas touchées par les lois et le reste du document sera toujours considéré comme valide.
+                                    </p>
+                                </div>
+                                <div class="my-4">
+                                    <p style="text-align:Left;"><span style="font-style:normal;font-weight:bold;text-decoration:underline;">Modifications</span><br><br>Ces conditions générales peuvent être modifiées de temps à autre afin de maintenir le respect de la loi et de refléter tout changement à la façon dont nous gérons notre site et la façon dont nous nous attendons à ce que les utilisateurs se comportent sur notre site. Nous recommandons à nos utilisateurs de vérifier ces conditions générales de temps à autre pour s’assurer qu’ils sont informés de toute mise à jour. Au besoin, nous informerons les utilisateurs par courriel des changements apportés à ces conditions ou nous afficherons un avis sur notre site.
+                                    </p>
+                                </div>
+                                <div class="my-4">
+                                    <p style="text-align:Left;"><span style="font-style:normal;font-weight:bold;text-decoration:underline;">Contact</span><br><br>Veuillez communiquer avec nous si vous avez des questions ou des préoccupations. Nos coordonnées sont les suivantes :<br><br>contact@renergies.fr
+                                    </p>
+                                </div>
+                                <div>
+                                    <p style="text-align:center;"><span style="font-style:italic;font-weight:normal;">Date d'entrée en vigueur : </span>le 18 octobre 2022.
+                                    </p>
+                                </div>
+                                <div class="text-center my-3">
+                                    <p>© 2002-2022, DocumentsLégaux™ (Sequiter Inc.)</p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                            <button type="button" class="btn btn-primary">Compris</button>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg my-3">Mettre à jour</button>
                 {{ form_end(profileEditForm) }}
-                
             </div>
         </div>
     </section>    

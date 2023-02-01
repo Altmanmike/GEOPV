@@ -102,10 +102,10 @@ class ProfileEditFormType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Vous devriez accepter nos termes..',
                     ]),
                 ],
-                'label' => 'Veuillez accepter les termes..',
+                'label' => 'En cochant, veuillez assumer avoir lu le document RGPD et accepté nos conditions générales d\'utilisation..',
                 'label_attr' => ['class' => 'my-2 me-2']
             ])
         ;

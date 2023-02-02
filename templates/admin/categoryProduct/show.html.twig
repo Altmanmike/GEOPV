@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir les informations de catégorie de produits{% endblock %}
+
+{% block body %}
+
+    <section class="container mx-auto my-5">
+        <div class="card text-center w-50 mx-auto">
+            <div class="card-header">
+                <h1 class="card-title">Catégorie n°{{ categoryProduct.id }}</h1>
+            </div>
+            <div class="card-body">                
+                <p class="card-text mb-4">Envoyé par: {{ categoryProduct.user.firstname }} {{ categoryProduct.user.lastname }}</p>
+                <p class="card-text mb-4">Titre: {{ categoryProduct.title }}</p>
+                <p class="card-text">Contenu: {{ categoryProduct.content }}</p>
+				<div class="my-2">
+					<img src="{{ categoryProduct.picture }}" class="img-thumbnail" alt="post-thumbnail">
+				</div>
+            </div>
+            <div class="card-footer">
+                <p class="card-text">Crée le: {{ categoryProduct.createdAt.format('d/m/Y') }}</p>
+            </div>            
+        </div>
+    </section>  
+    
+{% endblock %}

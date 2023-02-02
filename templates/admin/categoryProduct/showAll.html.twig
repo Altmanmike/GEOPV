@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir les informations des <strong>catégorie de produits</strong>{% endblock %}
+
+{% block body %}
+    <section class="container w-75 my-5 text-center">
+        <h1 class="mb-3">Liste des <strong>catégories de produits</strong> enregistrés</h1>
+        <div class="row">
+            <table class="table table-hover bg-light my-3">
+                <thead class="table-dark">
+                    <tr>
+                        <td>N°</td>
+                        <td>Utilisateur</td>
+                        <td>Aperçu</td>
+                        <td>Titre du produit</td>
+                        <td>Description du produit</td>
+                        <td>Crée le</td>
+                        <td>Détails</td>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for categoryProduct in categoryProducts|reverse %}
+                    <tr>
+                        <td>{{ categoryProduct.id }}</td>
+                        <td>{{ categoryProduct.user.email }}</td>
+                        <td><img src="{{ categoryProduct.picture }}" class="img-thumbnail" alt="post-thumbnail"></td>
+                        <td>{{ categoryProduct.title }}</td>
+                        <td>{{ categoryProduct.content }}</td>
+                        <td>{{ categoryProduct.createdAt.format('d/m/Y') }}</td>
+                        <td><a href="{{ path('app_admin_showCategoryProduct', {id: categoryProduct.id} )}}" ><i class="fa fa-eye"></i></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </section>
+{% endblock %}

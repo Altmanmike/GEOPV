@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir les informations de catégorie de tickets{% endblock %}
+
+{% block body %}
+
+    <section class="container mx-auto my-5">
+        <div class="card text-center w-50 mx-auto">
+            <div class="card-header">
+                <h1 class="card-title">Catégorie n°{{ categoryTicket.id }}</h1>
+            </div>
+            <div class="card-body">                
+                <p class="card-text mb-4">Envoyé par: {{ categoryTicket.user.firstname }} {{ categoryTicket.user.lastname }}</p>
+                <p class="card-text mb-4">Titre: {{ categoryTicket.title }}</p>
+                <p class="card-text">Contenu: {{ categoryTicket.content }}</p>
+				<div class="my-2">
+					<img src="{{ categoryTicket.picture }}" class="img-thumbnail" alt="post-thumbnail">
+				</div>
+            </div>
+            <div class="card-footer">
+                <p class="card-text">Crée le: {{ categoryTicket.createdAt.format('d/m/Y') }}</p>
+            </div>            
+        </div>
+    </section>  
+    
+{% endblock %}

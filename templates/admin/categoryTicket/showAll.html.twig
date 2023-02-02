@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir les informations des <strong>catégorie de tickets</strong>{% endblock %}
+
+{% block body %}
+    <section class="container w-75 my-5 text-center">
+        <h1 class="mb-3">Liste des <strong>catégories de tickets</strong> enregistrés</h1>
+        <div class="row">
+            <table class="table table-hover bg-light my-3">
+                <thead class="table-dark">
+                    <tr>
+                        <td>N°</td>
+                        <td>Utilisateur</td>                        
+                        <td>Titre du ticket</td>
+                        <td>Contenu du ticket</td>
+                        <td>Crée le</td>
+                        <td>Détails</td>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for categoryTicket in categoryTickets|reverse %}
+                    <tr>
+                        <td>{{ categoryTicket.id }}</td>
+                        <td>{{ categoryTicket.user.email }}</td>                        
+                        <td>{{ categoryTicket.title }}</td>
+                        <td>{{ categoryTicket.content }}</td>
+                        <td>{{ categoryTicket.createdAt.format('d/m/Y') }}</td>
+                        <td><a href="{{ path('app_admin_showCategoryTicket', {id: categoryTicket.id} )}}" ><i class="fa fa-eye"></i></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </section>
+{% endblock %}

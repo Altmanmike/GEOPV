@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir les informations de catégorie d'articles{% endblock %}
+
+{% block body %}
+
+    <section class="container mx-auto my-5">
+        <div class="card text-center w-50 mx-auto">
+            <div class="card-header">
+                <h1 class="card-title">Catégorie n°{{ categoryPost.id }}</h1>
+            </div>
+            <div class="card-body">                
+                <p class="card-text mb-4">Envoyé par: {{ categoryPost.user.firstname }} {{ categoryPost.user.lastname }}</p>
+                <p class="card-text mb-4">Titre: {{ categoryPost.title }}</p>
+                <p class="card-text">Contenu: {{ categoryPost.content }}</p>
+				<div class="my-2">
+					<img src="{{ categoryPost.picture }}" class="img-thumbnail" alt="post-thumbnail">
+				</div>
+            </div>
+            <div class="card-footer">
+                <p class="card-text">Crée le: {{ categoryPost.createdAt.format('d/m/Y') }}</p>
+            </div>            
+        </div>
+    </section>  
+    
+{% endblock %}

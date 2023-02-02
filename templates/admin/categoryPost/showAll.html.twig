@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir les informations des <strong>catégorie d'articles</strong>{% endblock %}
+
+{% block body %}
+    <section class="container w-75 my-5 text-center">
+        <h1 class="mb-3">Liste des <strong>catégories d'articles</strong> enregistrés</h1>
+        <div class="row">
+            <table class="table table-hover bg-light my-3">
+                <thead class="table-dark">
+                    <tr>
+                        <td>N°</td>
+                        <td>Utilisateur</td>
+                        <td>Aperçu</td>
+                        <td>Titre de l'article</td>
+                        <td>Contenu de l'article</td>
+                        <td>Crée le</td>
+                        <td>Détails</td>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for categoryPost in categoryPosts|reverse %}
+                    <tr>
+                        <td>{{ categoryPost.id }}</td>
+                        <td>{{ categoryPost.user.email }}</td>
+                        <td><img src="{{ categoryPost.picture }}" class="img-thumbnail" alt="post-thumbnail"></td>
+                        <td>{{ categoryPost.title }}</td>
+                        <td>{{ categoryPost.content }}</td>
+                        <td>{{ categoryPost.createdAt.format('d/m/Y') }}</td>
+                        <td><a href="{{ path('app_admin_showCategoryPost', {id: categoryPost.id} )}}" ><i class="fa fa-eye"></i></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </section>
+{% endblock %}

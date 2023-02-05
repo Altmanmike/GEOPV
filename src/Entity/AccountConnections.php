@@ -25,8 +25,7 @@ class AccountConnections
     #[ORM\Column(nullable: true)]
     private ?int $nb_logged = null;
 
-    #[ORM\OneToOne(inversedBy: 'accountConnections')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\OneToOne(mappedBy: 'accountConnections', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
     public function getId(): ?int
@@ -81,13 +80,19 @@ class AccountConnections
 
         return $this;
     }
+
     public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(?User $user): self
+    public function setUser(User $user): self
     {
+        // set the owning side of the relation if necessary
+        if ($user->getAccountConnections() !== $this) {
+            $user->setAccountConnections($this);
+        }
+
         $this->user = $user;
 
         return $this;

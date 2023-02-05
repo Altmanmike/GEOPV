@@ -90,6 +90,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $last_login_at = null;
 
+    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?AccountConnections $accountConnections;
+
     public function __construct()
     {     
         $this->created_at = new \DateTimeImmutable();  
@@ -484,6 +488,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setNbPayments(?int $nb_payments): self
     {
         $this->nb_payments = $nb_payments;
+
+        return $this;
+    }
+
+    public function getAccountConnections(): ?AccountConnections
+    {
+        return $this->accountConnections;
+    }
+
+    public function setAccountConnections(AccountConnections $accountConnections): self
+    {
+        $this->accountConnections = $accountConnections;
 
         return $this;
     }

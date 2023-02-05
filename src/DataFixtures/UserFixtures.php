@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\AccountConnections;
 use Faker\Factory;
 use App\Entity\User;
 use App\Repository\UserRepository;
@@ -51,6 +52,7 @@ class UserFixtures extends Fixture
             $user->setPassword(
                 $this->passwordEncoder->hashPassword($user, $faker->password())    
             );
+            $user->setAccountConnections(new AccountConnections());
             $user->setCreatedAt(new \DateTimeImmutable());
             $user->setLastLoginAt(new \DateTimeImmutable());
 

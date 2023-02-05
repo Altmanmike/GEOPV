@@ -152,7 +152,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],   
             ])
-            ->add('agreeTerms', CheckboxType::class, [
+            /*->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
@@ -161,7 +161,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'En cochant, veuillez assumer avoir lu le document RGPD et accepté nos conditions générales d\'utilisation..',
                 'label_attr' => ['class' => 'my-2 me-2']
-            ])
+            ])*/
         ;
     }
 

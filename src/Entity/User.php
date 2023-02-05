@@ -79,9 +79,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?bool $is_logged = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $nb_logged = null;
-
-    #[ORM\Column(nullable: true)]
     private ?int $nb_tickets = null;
 
     #[ORM\Column(nullable: true)]
@@ -439,18 +436,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsLogged(?bool $is_logged): self
     {
         $this->is_logged = $is_logged;
-
-        return $this;
-    }
-
-    public function getNbLogged(): ?int
-    {
-        return $this->nb_logged;
-    }
-
-    public function setNbLogged(?int $nb_logged): self
-    {
-        $this->nb_logged = $nb_logged;
 
         return $this;
     }

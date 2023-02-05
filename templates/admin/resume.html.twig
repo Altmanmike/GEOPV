@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Résumé données{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-sm-12 col-xl-6">
+                <div class="bg-light text-left rounded p-4">
+                    <h6 class="mb-4">Résumé de données liées aux utilisateurs</h6>
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                            <tr class="text-dark">
+                                <th scope="col"><h6 class="mb-0">Nom</h6></th>
+                                <th scope="col"><h6 class="mb-0">Prénom</h6></th>
+                                <th scope="col"><h6 class="mb-0">Mail</h6></th>
+                                <th scope="col"><h6 class="mb-0">Abonnement</h6></th>
+                                <th scope="col"><h6 class="mb-0">NbPayments</h6></th>
+                                <th scope="col"><h6 class="mb-0">NbTickets</h6></th>
+                                <th scope="col"><h6 class="mb-0">NbComments</h6></th>
+                                <th scope="col"><h6 class="mb-0">Company</h6></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for result in results|reverse|slice(0, 10) %}
+                                <tr>
+                                    <td>{{ result.lastname }}</td>
+                                    <td>{{ result.firstname }}</td>
+                                    <td>{{ result.mail }}</td>
+                                    {% if(result.product.id in (1,2,3)) %}
+                                        <td>{{ result.product }}</td>
+                                        {% else %}
+                                        <td></td>
+                                    {% endif %}
+                                    <td>{{ result.nbPayments }}</td>
+                                    <td>{{ result.nbTickets }}</td>
+                                    <td>{{ result.nbComments }}</td>
+                                    <td>{{ result.Company }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

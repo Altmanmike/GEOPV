@@ -36,7 +36,7 @@ class SecurityController extends AbstractController
         $u = $this->getUser()->getUserIdentifier();        
         $user = $repo->findByEmail($u); 
         //dd($user);              
-        $user[0]->setNbLogged($user[0]->getNbLogged()-1);
+        //$user[0]->setNbLogged($user[0]->getNbLogged()-1);
         $user[0]->setIsLogged(false);
         $user[0]->setLastLoginAt(new \DateTimeImmutable());
 

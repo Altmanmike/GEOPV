@@ -24,9 +24,6 @@ class Payment
     #[ORM\Column(nullable: true)]
     private ?int $quantity = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $nb_payments = null;
-
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $created_at = null;
 
@@ -97,18 +94,6 @@ class Payment
     public function setQuantity(?int $quantity): self
     {
         $this->quantity = $quantity;
-
-        return $this;
-    }
-
-    public function getNbPayments(): ?int
-    {
-        return $this->nb_payments;
-    }
-
-    public function setNbPayments(?int $nb_payments): self
-    {
-        $this->nb_payments = $nb_payments;
 
         return $this;
     }

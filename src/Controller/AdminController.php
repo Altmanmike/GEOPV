@@ -32,8 +32,14 @@ class AdminController extends AbstractController
         //dd($user[0]->getRoles());
         //$user[0]->getLastLoginAt();
 
+        // Si l'utilisateur n'est pas l'administrateur
+        if (!in_array('ROLE_ADMIN', $user[0]->getRoles())) {
+            return $this->redirectToRoute('app_user');
+        }
+        //dd($user[0]->getRoles());
+
         $user[0]->setIsLogged(true);
-        $user[0]->setNbLogged(1);
+        //$user[0]->setNbLogged(1);
 
         $entityManager->persist($user[0]);
         $entityManager->flush();
@@ -92,10 +98,7 @@ class AdminController extends AbstractController
             } 
         }
 
-        // Si l'utilisateur n'est pas l'administrateur
-        if (!in_array('ROLE_ADMIN', $user[0]->getRoles())) {
-            return $this->redirectToRoute('app_user');
-        }
+
 
         return $this->render('easy-admin/dash_index.html.twig', [
             'controller_name' => 'AdminController',
@@ -104,7 +107,7 @@ class AdminController extends AbstractController
 			'comments' => $comments,
             'tickets' => $tickets,
 			'answers' => $answers,
-            'payments' => $payments, 
+            'payments' => $payments,
             'nb_new_posts' => $nb_new_posts, 
             'nb_new_comments' => $nb_new_comments, 
 			'nb_new_tickets' => $nb_new_tickets, 

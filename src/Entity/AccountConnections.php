@@ -25,7 +25,8 @@ class AccountConnections
     #[ORM\Column(nullable: true)]
     private ?int $nb_logged = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'accountConnections')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
     public function getId(): ?int
@@ -80,7 +81,6 @@ class AccountConnections
 
         return $this;
     }
-
     public function getUser(): ?User
     {
         return $this->user;

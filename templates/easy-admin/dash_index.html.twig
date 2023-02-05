@@ -15,8 +15,8 @@
                         <h6 class="mb-0">
                             {% set sommeD = 0 %}
                             {% for payment in payments %}
-                                {% if payment.completedAt and (payment.completedAt.format('d/m/Y') == date("now").format('d/m/Y')) %}                                
-                                    {% set sommeD = sommeD + payment.totalprice %}                                    
+                                {% if payment.completedAt and (payment.completedAt.format('d/m/Y') == date("now").format('d/m/Y')) %}
+                                    {% set sommeD = sommeD + payment.totalprice %}
                                 {% endif %}
                             {% endfor %}
                             {{ sommeD }} €
@@ -32,8 +32,8 @@
                         <h6 class="mb-0">
                             {% set somme = 0 %}
                             {% for payment in payments|reverse %}
-                                {% if payment.completedAt and (payment.completedAt > payment.getPaymentD7D()) %}                                
-                                    {% set somme = somme + payment.totalprice %}                                    
+                                {% if payment.completedAt and (payment.completedAt > payment.getPaymentD7D()) %}
+                                    {% set somme = somme + payment.totalprice %}
                                 {% endif %}
                             {% endfor %}
                             {{ somme }} €
@@ -57,10 +57,10 @@
                         <p class="mb-2">Revenu total</p>
                         <h6 class="mb-0">
                             {% set somme = 0 %}
-                            {% for payment in payments %}   
-                                {% if payment.completedAt %}                                                           
-                                    {% set somme = somme + payment.totalprice %}    
-                                {% endif %}                            
+                            {% for payment in payments %}
+                                {% if payment.completedAt %}
+                                    {% set somme = somme + payment.totalprice %}
+                                {% endif %}
                             {% endfor %}
                             {{ somme }} €
                         </h6>
@@ -71,7 +71,7 @@
     </div>
     <!-- FIN REVENUS & VENTES -->
 
-    <!-- REVENUS & VENTES -->
+    <!-- CATEGORIES DONNEES -->
     <div class="container-fluid pt-4 px-4">
         <div class="row g-4">
             <div class="col-sm-6 col-xl-3">
@@ -120,9 +120,9 @@
             </div>
         </div>
     </div>
-    <!-- FIN REVENUS & VENTES -->
+    <!-- FIN CATEGORIES DONNEES -->
 
-    <!-- VENTES STATS -->
+    <!-- DERNIERS TICKETS AVEC REPONSES -->
     <div class="container-fluid pt-4 px-4">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-6">               
@@ -177,7 +177,7 @@
             </div>
         </div>
     </div>
-    <!-- FIN VENTES STATS -->
+    <!-- FIN DERNIERS TICKETS AVEC REPONSES -->
 
     <!-- DERNIERES INSCRIPTIONS -->
     <div class="container-fluid pt-4 px-4">

@@ -19,7 +19,7 @@ class Delivery
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $created_at = null;
 	
-    #[ORM\ManyToOne(inversedBy: 'invoices')]
+    #[ORM\ManyToOne(inversedBy: 'delivery')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 

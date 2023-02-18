@@ -264,6 +264,11 @@ body::-webkit-scrollbar-thumb {
     margin-left: 60px;
   }
 
+/**** VIEW OF RESUME HTML TWIG: DATA USERS ****/
+#dataScrolled {
+    overflow-x: scroll; /* for mobile */
+}
+
 /* ---------------------------------------------------------- */
 /* ------------------ CONNEXION MODAL FORM ------------------ */
 /* ---------------------------------------------------------- */
@@ -1210,6 +1215,9 @@ footer div.site-footer div div div h5 {
 /* ---------------------------------------------------------- */
 
 @media only screen and (min-width: 1200px) {
-
+    /**** VIEW OF RESUME HTML TWIG: DATA USERS ****/
+    #dataScrolled {
+        overflow-x: hidden; /* for pc */
+    }
 
 }

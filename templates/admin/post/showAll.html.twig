@@ -16,6 +16,7 @@
                         <td>Contenu de l'article</td>
                         <td>Crée le</td>
                         <td>Détails</td>
+                        <td>Supprimer</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,6 +29,7 @@
                         <td>{{ post.content }}</td>
                         <td>{{ post.createdAt.format('d/m/Y') }}</td>
                         <td><a href="{{path('app_admin_showPost', {id: post.id} )}}" ><i class="fa fa-eye"></i></a></td>
+                        <td><a href="{{path('app_admin_deletePost', {id: post.id} )}}" ><i class="fa fa-trash"></i></a></td>
                     </tr>
                 {% endfor %}
                 </tbody>

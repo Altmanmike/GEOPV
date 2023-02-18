@@ -159,7 +159,7 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Vous devriez accepter nos termes..',
                     ]),
                 ],
-                'label' => 'En cochant, veuillez assumer avoir lu le document RGPD et accepté nos conditions générales d\'utilisation..',
+                'label' => 'En cochant, veuillez assumer avoir lu le document RGPD et accepter nos conditions générales d'utilisation..',
                 'label_attr' => ['class' => 'my-2 me-2']
             ])*/
         ;

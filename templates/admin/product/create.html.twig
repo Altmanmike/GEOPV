@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Envoyer un nouveau produit{% endblock %}
+
+{% block body %}
+
+    <section class="container w-75 mx-auto my-5">
+        <h1 class="text-center mb-3">Nouveau produit</h1>
+        {{ form_start(newProductForm) }}
+            {{ form_row(newProductForm.title) }}
+            {{ form_row(newProductForm.type) }}
+            {{ form_row(newProductForm.type_price) }}
+            {{ form_row(newProductForm.description) }}
+            {{ form_row(newProductForm.picture) }}
+            <button type="submit" class="btn btn-primary btn-lg my-3">Envoyer</button>
+        {{ form_end(newProductForm) }}
+    </section>
+
+{% endblock %}

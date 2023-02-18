@@ -16,6 +16,7 @@
                         <td>Prix à la base</td>
                         <td>Description</td>
                         <td>Voir</td>
+                        <td>Supprimer</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,6 +28,7 @@
                         <td>{{ product.typeprice }} €</td> 
                         <td>{{ product.description }}</td>
                         <td><a href="{{path('app_admin_showProduct', {id: product.id} )}}" ><i class="fa fa-eye"></i></a></td>
+                        <td><a href="{{path('app_admin_deleteProduct', {id: product.id} )}}" ><i class="fa fa-trash"></i></a></td>
                     </tr>
                 {% endfor %}
                 </tbody>

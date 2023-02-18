@@ -181,7 +181,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    /*#[Route("/user/ticket/new", name:"app_user_createTicket")]
+    #[Route("/user/ticket/new", name:"app_user_createTicket")]
     public function createTicket(Request $request, EntityManagerInterface $entityManager, UserRepository $repo): Response
     {
         // Récupération de l'utilisateur avec informations (array)
@@ -214,32 +214,9 @@ class UserController extends AbstractController
             'controller_name' => 'UserController',
             'newTicketForm' => $form->createView()
         ]);   
-    }*/
+    }
 
     // USER POSTS -----------------------------------------------------
-
-    #[Route("/user/posts", name:"app_user_showPosts")]
-    public function showPosts(UserRepository $repo, PostRepository $repo1): Response
-    {
-        // Récupération de l'utilisateur avec informations (array)
-        $u = $this->getUser()->getUserIdentifier();
-        $user = $repo->findByEmail($u);
-        //dd($user[0]->getRoles());
-
-        // Si l'utilisateur est l'admin
-        if (in_array('ROLE_ADMIN', $user[0]->getRoles())) {
-            return $this->redirectToRoute('app_admin');
-        }
-
-        // Récupération de tous les articles crées par l'administrateur et les réponses
-        $posts = $user[0]->getPosts();
-        //dd($posts);
-
-        return $this->render('user/post/showAll.html.twig', [
-            'controller_name' => 'UserController',
-            'posts' => $posts
-        ]);
-    }
 
     #[Route("/user/post/{id}", name:"app_user_showPost")]
     public function showPost(Request $request, EntityManagerInterface $entityManager, UserRepository $repo, PostRepository $repo1, $id): Response
@@ -288,6 +265,32 @@ class UserController extends AbstractController
             'comments' => $comments,
             $id,
             'newCommentForm' => $form->createView()
+        ]);
+    }
+
+    // USER PRODUCTS -----------------------------------------------------
+
+    #[Route("/user/product/{id}", name:"app_user_showProduct")]
+    public function showProduct(Request $request, EntityManagerInterface $entityManager, UserRepository $repo, ProductRepository $repo1, $id): Response
+    {
+        // Récupération de l'utilisateur avec informations (array)
+        $u = $this->getUser()->getUserIdentifier();
+        $user = $repo->findByEmail($u);
+        //dd($user[0]->getRoles());
+
+        // Si l'utilisateur est l'admin
+        if (in_array('ROLE_ADMIN', $user[0]->getRoles())) {
+            return $this->redirectToRoute('app_admin');
+        }
+
+        // Récupération d'un produit entré par l'administrateur avec informations
+        $product = $repo1->findById($id);
+        //dd($product);
+
+        return $this->render('user/post/show.html.twig', [
+            'controller_name' => 'UserController',
+            'product' => $product[0],
+            $id
         ]);
     }
 

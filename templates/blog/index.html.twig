@@ -9,7 +9,7 @@
             <div class="card" style="width: 18rem;">
                 <img src="{{ post.picture }}" class="card-img-top" alt="pic post">
                 <div class="card-body">
-                    <h5 class="card-title my-3">{{ post.title }}</h5>
+                    <h5 class="card-title my-3">{{ post.title }} <span class="badge bg-secondary">{{ category_posts.title }} </span></h5>
                     <p class="card-text my-2">{{ post.content }}</p>
                     <a href="{{path('app_user_showPost', {id: post.id} )}}" class="btn btn-primary my-1">Lire</a>
                 </div>

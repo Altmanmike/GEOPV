@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir les informations du produit{% endblock %}
+
+{% block body %}
+
+    <section class="container mx-auto my-5">
+        <div class="card text-center w-50 mx-auto">
+            <img src="{{ product.picture }}" class="card-img-top" alt="pic product">
+            <div class="card-body">                
+                <p class="card-text mb-4">Titre: {{ product.title }}</p>
+                <p class="card-text mb-4">Prix: {{ product.type_price }} € HT</p>
+                <p class="card-text mb-4">Description: {{ product.description }}</p>
+                <p class="card-text">Crée le: {{ product.createdAt.format('d/m/Y') }}</p>
+            </div>
+            <div class="card-footer">
+                <p class="card-text">Catégorie: <span class="badge text-bg-secondary">{{ category_Product.title }}</span></p>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

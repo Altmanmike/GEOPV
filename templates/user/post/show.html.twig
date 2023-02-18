@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir les informations de l'article{% endblock %}
+
+{% block body %}
+
+    <section class="container mx-auto my-5">
+        <div class="card text-center w-50 mx-auto">
+            <img src="{{ post.picture }}" class="card-img-top" alt="pic post">
+            <div class="card-body">                
+                <p class="card-text mb-4">Titre: {{ post.title }}</p>
+                <p class="card-text mb-4">Contenu: {{ post.content }}</p>
+                <p class="card-text">Crée le: {{ post.createdAt.format('d/m/Y') }}</p>
+            </div>
+            <div class="card-footer">
+                <p class="card-text">Catégorie: <span class="badge text-bg-secondary">{{ category_Post.title }}</span></p>
+            </div>            
+        </div>
+    </section>
+    
+    {% for comment in comments %}
+    <section class="container mx-auto my-5">
+        <div class="card text-center w-50 mx-auto">
+            <div class="card-header">
+                <h5 class="card-title">Commentaires n°{{ comment.id }}</h5>
+            </div>
+            <div class="card-body">                
+                <p class="card-text mb-4">Envoyé par: {{ comment.user.firstname }} {{ comment.user.lastname }}</p>
+                <p class="card-text">Contenu: {{ comment.content }} </p>
+            </div>
+            <div class="card-footer">
+                <p class="card-text">Envoyée le: {{ comment.createdAt.format('d/m/Y') }}</p>
+            </div>
+        </div>
+    </section>  
+    {% endfor %}
+
+    <section class="container w-75 mx-auto my-5">
+        <h1 class="text-center mb-3">Répondre</h1>
+        {{ form_start(newCommentForm) }}
+            {{ form_row(newCommentForm.content) }}
+        <button type="submit" class="btn btn-primary btn-lg my-3">Envoyer</button>
+        {{ form_end(newCommentForm) }}
+    </section>
+
+{% endblock %}

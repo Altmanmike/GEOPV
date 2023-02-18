@@ -114,7 +114,7 @@ class AdminController extends AbstractController
         ]);
     }
         
-    // RESUME DES DONNEES EN COURS  ---------------------------------------------------
+    // ADMIN CURRENTDATA RESUME ---------------------------------------------------
 
     #[Route('/admin/users-data', name: 'app_admin_showUsersData')]
     public function indexData(UserRepository $repo, EntityManagerInterface $entityManager, TicketRepository $repoT, AnswerRepository $repoA, PostRepository $repoS, CommentRepository $repoC, PaymentRepository $repoP): Response
@@ -151,7 +151,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    // Liste des utilisateurs ---------------------------------------------------------
+    // ADMIN USERS ---------------------------------------------------------
     
     #[Route("/admin/users", name:"app_admin_showUsers")]
     public function showUsers(UserRepository $repo): Response
@@ -221,7 +221,7 @@ class AdminController extends AbstractController
     }
 
 
-    // Liste des tickets -------------------------------------------------------------
+    // ADMIN TICKETS -------------------------------------------------------------
 
     #[Route("/admin/tickets", name:"app_admin_showTickets")]    
     public function showTickets(UserRepository $repo, TicketRepository $repo1): Response
@@ -310,7 +310,7 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('app_admin_showTickets');
     }
 
-    #[Route("/admin/ticket/{id}/resolu", name:"app_admin_closeTicket")]    
+    #[Route("/admin/ticket/{id}/close", name:"app_admin_closeTicket")]
     public function closeTicket(EntityManagerInterface $entityManager, UserRepository $repo, TicketRepository $repo1, $id): Response
     {
         // Récupération de l'utilisateur avec informations (array)
@@ -335,7 +335,7 @@ class AdminController extends AbstractController
     }
 
 
-    // Liste des posts -------------------------------------------------------------
+    // ADMIN POSTS -------------------------------------------------------------
 
     #[Route("/admin/posts", name:"app_admin_showPosts")]    
     public function showPosts(UserRepository $repo, PostRepository $repo1): Response
@@ -425,7 +425,7 @@ class AdminController extends AbstractController
     }
 
 
-    // Liste des produits -----------------------------------------------------------------
+    // ADMIN PRODUCTS -----------------------------------------------------------------
 
     #[Route("/admin/products", name:"app_admin_showProducts")]
     public function showProducts(UserRepository $repo, ProductRepository $repo3): Response
@@ -494,7 +494,7 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('app_admin_showProducts');
     }
 
-    // Liste des paiements -----------------------------------------------------------------
+    // ADMIN PAYMENTS -----------------------------------------------------------------
 
     #[Route("/admin/payments", name:"app_admin_showPayments")]
     public function showPayments(UserRepository $repo, PaymentRepository $repo4): Response

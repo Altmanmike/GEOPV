@@ -106,7 +106,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    // Liste des tickets de l'utilisateur -----------------------------------------------------
+    // USER TICKETS -----------------------------------------------------
 
     #[Route("/user/tickets", name:"app_user_showTickets")]
     public function showTickets(UserRepository $repo, TicketRepository $repo1): Response
@@ -216,7 +216,82 @@ class UserController extends AbstractController
         ]);   
     }*/
 
-    // Procédure de paiements -----------------------------------------------------------------
+    // USER POSTS -----------------------------------------------------
+
+    #[Route("/user/posts", name:"app_user_showPosts")]
+    public function showPosts(UserRepository $repo, PostRepository $repo1): Response
+    {
+        // Récupération de l'utilisateur avec informations (array)
+        $u = $this->getUser()->getUserIdentifier();
+        $user = $repo->findByEmail($u);
+        //dd($user[0]->getRoles());
+
+        // Si l'utilisateur est l'admin
+        if (in_array('ROLE_ADMIN', $user[0]->getRoles())) {
+            return $this->redirectToRoute('app_admin');
+        }
+
+        // Récupération de tous les articles crées par l'administrateur et les réponses
+        $posts = $user[0]->getPosts();
+        //dd($posts);
+
+        return $this->render('user/post/showAll.html.twig', [
+            'controller_name' => 'UserController',
+            'posts' => $posts
+        ]);
+    }
+
+    #[Route("/user/post/{id}", name:"app_user_showPost")]
+    public function showPost(Request $request, EntityManagerInterface $entityManager, UserRepository $repo, PostRepository $repo1, $id): Response
+    {
+        // Récupération de l'utilisateur avec informations (array)
+        $u = $this->getUser()->getUserIdentifier();
+        $user = $repo->findByEmail($u);
+        //dd($user[0]->getRoles());
+
+        // Si l'utilisateur est l'admin
+        if (in_array('ROLE_ADMIN', $user[0]->getRoles())) {
+            return $this->redirectToRoute('app_admin');
+        }
+
+        // Récupération d'un article écrit par l'administrateur avec informations
+        $post = $repo1->findById($id);
+        //dd($post);
+        $comments = $post[0]->getComments();
+        //dd($comments);
+        /*if($ticket[0]->getComments() != null)
+        {
+            $comments = $post[0]->getComments();
+            //dd($comments);
+        }*/
+
+        // Création d'un commentaire à l'article avec informations puis ajout dans la base
+        $comment = new Comment();
+        $form = $this->createForm(NewCommentFormType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $comment->setContent($form->get('content')->getData());
+
+            $entityManager->persist($comment);
+            $entityManager->flush();
+
+            $user[0]->setNbComments($user[0]->getNbComments()+1);
+
+            return $this->redirectToRoute('app_user_showPost', [ $id ]);
+        }
+
+        return $this->render('user/post/show.html.twig', [
+            'controller_name' => 'UserController',
+            'post' => $post[0],
+            'comments' => $comments,
+            $id,
+            'newCommentForm' => $form->createView()
+        ]);
+    }
+
+    // USER PAYMENTS -----------------------------------------------------------------
 
     #[Route("/user/payment/new", name:"app_user_createPayment")]     // ON UTILISERA CETTE ROUTE APRES PAIEMENT STRIPE SUR STRIPE.HTML.TWIG
     public function createPayment(Request $request, EntityManagerInterface $entityManager, UserRepository $repo, $is_payment_done): Response

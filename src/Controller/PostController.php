@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PostController extends AbstractController
 {
-    #[Route("/utilisateur/post/nouveau", name:"app_user_createPost")]    
+    #[Route("/admin/post/new", name:"app_admin_createPost")]
     public function createPost(Request $request, EntityManagerInterface $entityManager, UserRepository $repo): Response
     {
         // Récupération de l'utilisateur avec informations (array)
@@ -21,9 +21,9 @@ class PostController extends AbstractController
         $user = $repo->findByEmail($u);
         //dd($user[0]->getRoles());
 
-        // Si l'utilisateur est l'admin
-        if (in_array('ROLE_ADMIN', $user[0]->getRoles())) {
-            return $this->redirectToRoute('app_admin');
+        // Si l'utilisateur n'est pas l'administrateur
+        if (!in_array('ROLE_ADMIN', $user[0]->getRoles())) {
+            return $this->redirectToRoute('app_user');
         }
 
         // Création d'un post avec informations puis ajout dans la base        
@@ -41,11 +41,11 @@ class PostController extends AbstractController
 
             $user[0]->setNbPosts(htmlspecialchars(trim($user[0]->getNbPosts()+1)));
 
-            return $this->redirectToRoute('app_user_showPosts'); 
+            return $this->redirectToRoute('app_admin_showPosts');
         }
 
-        return $this->render('user/post/create.html.twig', [
-            'controller_name' => 'UserController',
+        return $this->render('admin/post/create.html.twig', [
+            'controller_name' => 'PostController',
             'newPostForm' => $form->createView()
         ]);   
     }

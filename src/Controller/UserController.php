@@ -24,7 +24,7 @@ use App\Form\NewPaymentFormType;
 
 class UserController extends AbstractController
 {    
-    #[Route('/utilisateur/bienvenue', name: 'app_user')]
+    #[Route('/user/welcome', name: 'app_user')]
     public function index(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher, UserRepository $repo): Response
     {            
         // Récupération d'un utilisateur avec informations (array)
@@ -88,7 +88,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/utilisateur/tableau', name: 'app_user_dash')]
+    #[Route('/user/dash', name: 'app_user_dash')]
     public function dash(UserRepository $repo): Response
     {
         // Récupération de l'utilisateur avec informations (array)
@@ -108,7 +108,7 @@ class UserController extends AbstractController
 
     // Liste des tickets de l'utilisateur -----------------------------------------------------
 
-    #[Route("/utilisateur/tickets", name:"app_user_showTickets")]    
+    #[Route("/user/tickets", name:"app_user_showTickets")]
     public function showTickets(UserRepository $repo, TicketRepository $repo1): Response
     {
         // Récupération de l'utilisateur avec informations (array)
@@ -131,7 +131,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route("/utilisateur/ticket/{id}", name:"app_user_showTicket")]    
+    #[Route("/user/ticket/{id}", name:"app_user_showTicket")]
     public function showTicket(Request $request, EntityManagerInterface $entityManager, UserRepository $repo, TicketRepository $repo1, $id): Response
     {
         // Récupération de l'utilisateur avec informations (array)
@@ -147,7 +147,6 @@ class UserController extends AbstractController
         // Récupération d'un ticket écrit par l'utilisateur avec informations
         $ticket = $repo1->findById($id);
         //dd($ticket);
-        //dd($ticket);   
         $answers = $ticket[0]->getAnswers();
         //dd($answers);    
         /*if($ticket[0]->getAnswers() != null)
@@ -182,7 +181,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    /*#[Route("/utilisateur/ticket/nouveau", name:"app_user_createTicket")]    
+    /*#[Route("/user/ticket/new", name:"app_user_createTicket")]
     public function createTicket(Request $request, EntityManagerInterface $entityManager, UserRepository $repo): Response
     {
         // Récupération de l'utilisateur avec informations (array)
@@ -219,7 +218,7 @@ class UserController extends AbstractController
 
     // Procédure de paiements -----------------------------------------------------------------
 
-    #[Route("/utilisateur/paiement/nouveau", name:"app_user_createPayment")]     // ON UTILISERA CETTE ROUTE APRES PAIEMENT STRIPE SUR STRIPE.HTML.TWIG
+    #[Route("/user/payment/new", name:"app_user_createPayment")]     // ON UTILISERA CETTE ROUTE APRES PAIEMENT STRIPE SUR STRIPE.HTML.TWIG
     public function createPayment(Request $request, EntityManagerInterface $entityManager, UserRepository $repo, $is_payment_done): Response
     {
         // Récupération de l'utilisateur avec informations (array)
@@ -270,7 +269,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route("/utilisateur/paiements", name:"app_user_showPayments")]    
+    #[Route("/user/payments", name:"app_user_showPayments")]
     public function showPayments(UserRepository $repo, PaymentRepository $repo4): Response
     {
         // Récupération de l'utilisateur avec informations (array)
@@ -292,7 +291,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route("/utilisateur/paiement/{id}", name:"app_user_showPayment")]    
+    #[Route("/user/payment/{id}", name:"app_user_showPayment")]
     public function showPayment(UserRepository $repo, PaymentRepository $repo4, $id): Response
     {
         // Récupération de l'utilisateur avec informations (array)

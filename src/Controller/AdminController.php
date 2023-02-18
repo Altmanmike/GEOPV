@@ -153,7 +153,7 @@ class AdminController extends AbstractController
 
     // Liste des utilisateurs ---------------------------------------------------------
     
-    #[Route("/admin/utilisateurs", name:"app_admin_showUsers")]    
+    #[Route("/admin/users", name:"app_admin_showUsers")]
     public function showUsers(UserRepository $repo): Response
     {
         // Récupération de l'utilisateur avec informations (array)
@@ -176,7 +176,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route("/admin/utilisateur/{id}", name:"app_admin_showUser")]    
+    #[Route("/admin/user/{id}", name:"app_admin_showUser")]
     public function showUser(UserRepository $repo, $id): Response
     {
         // Récupération de l'utilisateur avec informations (array)
@@ -200,7 +200,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route("/admin/utilisateur/{id}/supprimer", name:"app_admin_deleteUser")]    
+    #[Route("/admin/user/{id}/del", name:"app_admin_deleteUser")]
     public function deleteUser(UserRepository $repo, $id): Response
     {
         // Récupération de l'utilisateur avec informations (array)
@@ -290,7 +290,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route("/admin/ticket/{id}/supprimer", name:"app_admin_deleteTicket")]    
+    #[Route("/admin/ticket/{id}/del", name:"app_admin_deleteTicket")]
     public function deleteTicket(UserRepository $repo, TicketRepository $repo1, $id): Response
     {
         // Récupération de l'utilisateur avec informations (array)
@@ -404,7 +404,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route("/admin/post/{id}/supprimer", name:"app_admin_deletePost")]    
+    #[Route("/admin/post/{id}/del", name:"app_admin_deletePost")]
     public function deletePost(UserRepository $repo, PostRepository $repo1, $id): Response
     {
         // Récupération de l'utilisateur avec informations (array)
@@ -427,7 +427,7 @@ class AdminController extends AbstractController
 
     // Liste des produits -----------------------------------------------------------------
 
-    #[Route("/admin/produits", name:"app_admin_showProducts")]    
+    #[Route("/admin/products", name:"app_admin_showProducts")]
     public function showProducts(UserRepository $repo, ProductRepository $repo3): Response
     {
         // Récupération de l'utilisateur avec informations (array)
@@ -450,7 +450,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route("/admin/produit/{id}", name:"app_admin_showProduct")]    
+    #[Route("/admin/product/{id}", name:"app_admin_showProduct")]
     public function showProduct(UserRepository $repo, ProductRepository $repo3, $id): Response
     {
         // Récupération de l'utilisateur avec informations (array)
@@ -474,7 +474,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /*#[Route("/admin/produit/{id}/supprimer", name:"app_admin_deleteProduct")]    
+    #[Route("/admin/product/{id}/del", name:"app_admin_deleteProduct")]
     public function deleteProduct(UserRepository $repo, ProductRepository $repo3, $id): Response
     {
         // Récupération de l'utilisateur avec informations (array)
@@ -492,11 +492,11 @@ class AdminController extends AbstractController
         $repo->remove($product);    // remove marche qu'avec user
 
         return $this->redirectToRoute('app_admin_showProducts');
-    }*/
+    }
 
     // Liste des paiements -----------------------------------------------------------------
 
-    #[Route("/admin/paiements", name:"app_admin_showPayments")]    
+    #[Route("/admin/payments", name:"app_admin_showPayments")]
     public function showPayments(UserRepository $repo, PaymentRepository $repo4): Response
     {
         // Récupération de l'utilisateur avec informations (array)
@@ -518,7 +518,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route("/admin/paiement/{id}", name:"app_admin_showPayment")]    
+    #[Route("/admin/payment/{id}", name:"app_admin_showPayment")]
     public function showPayment(UserRepository $repo, PaymentRepository $repo4, $id): Response
     {
         // Récupération de l'utilisateur avec informations (array)

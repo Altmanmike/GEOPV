@@ -54,6 +54,15 @@
                 <div class="col-sm-6 my-3">
                     <div class="card">
                         <div class="card-body">
+                            <h5 class="card-title">ARTICLES</h5>
+                            <p class="card-text">Liste des articles postés, avec gestion.</p>
+                            <a href="{{path('app_admin_showPosts')}}" class="btn btn-danger mt-2">Voir articles</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 my-3">
+                    <div class="card">
+                        <div class="card-body">
                         <h5 class="card-title">TICKETS</h5>
                         <p class="card-text">Liste des tickets et des réponses reçus, avec gestion.</p>
                         <a href="{{path('app_admin_showTickets')}}" class="btn btn-danger mt-2">Voir tickets et réponses {% if nb_new_tickets > 0 and nb_new_answers > 0 %}<span class="badge text-bg-primary"> {{nb_new_tickets}} et {{nb_new_answers}}</span></a>{% elseif nb_new_tickets > 0 %}<span class="badge text-bg-primary">{{nb_new_tickets}}</span></a>{% else %}<span class="badge text-bg-primary"> {{nb_new_answers}}</span></a>{% endif %}

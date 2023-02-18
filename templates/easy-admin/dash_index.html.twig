@@ -4,72 +4,23 @@
 
 {% block body %}
 
-    <!-- REVENUS & VENTES -->
+    <!-- CATEGORIES DONNEES -->
     <div class="container-fluid pt-4 px-4">
         <div class="row g-4">
             <div class="col-sm-6 col-xl-3">
                 <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fa fa-chart-line fa-3x text-danger"></i>
+                    <i class="fa fa-users fa-3x text-danger"></i>
                     <div class="ms-3">
-                        <p class="mb-2">Ventes du jour</p>
-                        <h6 class="mb-0">
-                            {% set sommeD = 0 %}
-                            {% for payment in payments %}
-                                {% if payment.completedAt and (payment.completedAt.format('d/m/Y') == date("now").format('d/m/Y')) %}
-                                    {% set sommeD = sommeD + payment.totalprice %}
-                                {% endif %}
-                            {% endfor %}
-                            {{ sommeD }} €
+                        <h6 class="mb-2">
+                            <a href="{{path('app_admin_showUsersData')}}" class="btn btn-danger mt-2">Voir données <span class="badge text-bg-primary">2</span></a>
                         </h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fa fa-chart-bar fa-3x text-danger"></i>
-                    <div class="ms-3">
-                        <p class="mb-2">Ventes de la semaine</p>
-                        <h6 class="mb-0">
-                            {% set somme = 0 %}
-                            {% for payment in payments|reverse %}
-                                {% if payment.completedAt and (payment.completedAt > payment.getPaymentD7D()) %}
-                                    {% set somme = somme + payment.totalprice %}
-                                {% endif %}
-                            {% endfor %}
-                            {{ somme }} €
-                        </h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fa fa-money fa-3x text-danger"></i>
-                    <div class="ms-3">
-                        <p class="mb-2">Dernier achat</p>
-                        <h6 class="mb-0">{{ payments|last.totalprice }} €</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-xl-3">
-                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fa fa-chart-pie fa-3x text-danger"></i>
-                    <div class="ms-3">
-                        <p class="mb-2">Revenu total</p>
-                        <h6 class="mb-0">
-                            {% set somme = 0 %}
-                            {% for payment in payments %}
-                                {% if payment.completedAt %}
-                                    {% set somme = somme + payment.totalprice %}
-                                {% endif %}
-                            {% endfor %}
-                            {{ somme }} €
-                        </h6>
+                        <h6 class="mb-0">Liste des utilisateurs et informations</h6>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- FIN REVENUS & VENTES -->
+    <!-- FIN CATEGORIES DONNEES -->
 
     <!-- CATEGORIES DONNEES -->
     <div class="container-fluid pt-4 px-4">

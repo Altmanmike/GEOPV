@@ -52,7 +52,6 @@ class UserFixtures extends Fixture
             $user->setPassword(
                 $this->passwordEncoder->hashPassword($user, $faker->password())    
             );
-            $user->setAccountConnections(new AccountConnections());
             $user->setCreatedAt(new \DateTimeImmutable());
             $user->setLastLoginAt(new \DateTimeImmutable());
 

@@ -89,16 +89,14 @@ class AdminController extends AbstractController
             }
         }        
 
-        $payments = $repoP->findAll();
+        /*$payments = $repoP->findAll();
         for($i = 0; $i < sizeof($payments); $i++)
         {
             if($payments[$i]->getCreatedAt() > $user[0]->getLastLoginAt())   // vérif comparer dateimmutable 
             {
                 $nb_new_payments++;
             } 
-        }
-
-
+        }*/
 
         return $this->render('easy-admin/dash_index.html.twig', [
             'controller_name' => 'AdminController',
@@ -107,15 +105,51 @@ class AdminController extends AbstractController
 			'comments' => $comments,
             'tickets' => $tickets,
 			'answers' => $answers,
-            'payments' => $payments,
+            /*'payments' => $payments,*/
             'nb_new_posts' => $nb_new_posts, 
             'nb_new_comments' => $nb_new_comments, 
 			'nb_new_tickets' => $nb_new_tickets, 
             'nb_new_answers' => $nb_new_answers, 
-            'nb_new_payments' => $nb_new_payments,
+            /*'nb_new_payments' => $nb_new_payments,*/
         ]);
     }
         
+    // RESUME DES DONNEES EN COURS  ---------------------------------------------------
+
+    #[Route('/admin/users-data', name: 'app_admin_showUsersData')]
+    public function indexData(UserRepository $repo, EntityManagerInterface $entityManager, TicketRepository $repoT, AnswerRepository $repoA, PostRepository $repoS, CommentRepository $repoC, PaymentRepository $repoP): Response
+    {
+        //dd($repo);
+        // Récupération de l'utilisateur avec informations (array)
+        $u = $this->getUser()->getUserIdentifier();
+        $user = $repo->findByEmail($u);
+        //dd($user[0]->getRoles());
+        //$user[0]->getLastLoginAt();
+
+        // Si l'utilisateur n'est pas l'administrateur
+        if (!in_array('ROLE_ADMIN', $user[0]->getRoles())) {
+            return $this->redirectToRoute('app_user');
+        }
+        //dd($user[0]->getRoles());
+        $results = $repo->findAll();
+        /*$users = $results;
+        $posts = $repoS->findAll();
+        $comments = $repoC->findAll();
+        $tickets = $repoT->findAll();
+        $answers = $repoA->findAll();
+        $payments = $repoP->findAll();*/
+
+        return $this->render('Admin/resume.html.twig', [
+            'controller_name' => 'AdminController',
+            'results' => $results,
+            /*'users' => $users,
+            'posts' => $posts,
+            'comments' => $comments,
+            'tickets' => $tickets,
+            'answers' => $answers,
+            'payments' => $payments*/
+        ]);
+    }
 
     // Liste des utilisateurs ---------------------------------------------------------
     

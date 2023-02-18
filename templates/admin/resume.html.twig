@@ -16,6 +16,7 @@
                                 <th scope="col"><h6 class="mb-0">Nom</h6></th>
                                 <th scope="col"><h6 class="mb-0">Prénom</h6></th>
                                 <th scope="col"><h6 class="mb-0">Mail</h6></th>
+                                <th scope="col"><h6 class="mb-0">Rôle</h6></th>
                                 <th scope="col"><h6 class="mb-0">Abonnement</h6></th>
                                 <th scope="col"><h6 class="mb-0">NbPayments</h6></th>
                                 <th scope="col"><h6 class="mb-0">NbTickets</h6></th>
@@ -28,15 +29,16 @@
                                 <tr>
                                     <td>{{ result.lastname }}</td>
                                     <td>{{ result.firstname }}</td>
-                                    <td>{{ result.mail }}</td>
-                                    {% if(result.product.id in (1,2,3)) %}
-                                        <td>{{ result.product }}</td>
-                                        {% else %}
-                                        <td></td>
-                                    {% endif %}
+                                    <td>{{ result.email }}</td>
+                                    <td>{{ result.roles }}</td>
+                                    {# if result.payment.product.id in (1,2,3) #} {# FAIRE JOINTURE SQL #}
+                                        <td>{# result.product #}</td>
+                                        {# else #}
+
+                                    {# endif #}
                                     <td>{{ result.nbPayments }}</td>
                                     <td>{{ result.nbTickets }}</td>
-                                    <td>{{ result.nbComments }}</td>
+                                    <td>{# result.nbComments #}</td>
                                     <td>{{ result.Company }}</td>
                                 </tr>
                             {% endfor %}

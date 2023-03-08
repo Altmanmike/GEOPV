@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel utilisateur{% endblock %}
+
+{% block body %}
+
+    <section class="container w-75 my-5">
+
+        <div class="row">
+            <div class="col my-5">
+                <h1>Ajouter un nouvel utilisateur</h1>
+
+                <form class="row g-3" method="POST" action="{{ path('app_data_user_create') }}" enctype="application/x-www-form-urlencoded">
+                    <fieldset class="my-3">
+                        <legend><h2 class="mt-4">Identité</h2></legend>
+                        <label class="form-label mt-3" for="email">E-mail:</label>
+                        <input class="form-control mt-1" type="email" id="email" name="email">
+                        <label class="form-label mt-3" for="fname">First name:</label>
+                        <input class="form-control mt-1" type="text" id="fname" name="fname">
+                        <label class="form-label mt-3" for="lname">Last name:</label>
+                        <input class="form-control mt-1" type="text" id="lname" name="lname">
+                    </fieldset>
+                    <fieldset class="my-3">
+                        <legend><h2 class="">Coordonnées</h2></legend>
+                        <label class="form-label mt-3" for="phone">Téléphone:</label>
+                        <input class="form-control mt-1" type="text" id="phone" name="phone">
+                        <label class="form-label mt-3" for="company">Entreprise:</label>
+                        <input class="form-control mt-1" type="text" id="company" name="company">
+                        <label class="form-label mt-3" for="zipcode">Code postal:</label>
+                        <input class="form-control mt-1" type="text" id="zipcode" name="zipcode">
+                        <label class="form-label mt-3" for="city">Ville:</label>
+                        <input class="form-control mt-1" type="text" id="city" name="city">
+                    </fieldset>
+                    <button type="submit" class="btn btn-primary my-3">Soumettre</button>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+
+
+

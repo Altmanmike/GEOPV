@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir les <strong>Data User</strong>{% endblock %}
+
+{% block body %}
+
+    <section class="container w-75 my-5 text-center">
+        <h1 class="mb-3">Liste des <strong>utilisateurs</strong> enregistrés</h1>
+        <div class="row">
+            <table class="table table-hover bg-light my-3">
+                <thead class="table-dark">
+                <tr>
+                    <td>N°</td>
+                    <td>Nom</td>
+                    <td>Prénom</td>
+                    <td>Email</td>
+                    <td>Role</td>
+                    <td>Mobile</td>
+                    <td>Entreprise</td>
+                    <td>Code_postal</td>
+                    <td>Ville</td>
+                    <td>Crée le</td>
+                    <td>Voir/Éditer</td>
+                    <td>Supprimer</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users|reverse %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.lastname }}</td>
+                        <td>{{ user.firstname }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.roles|json_encode }}</td>
+                        <td>{{ user.phone }}</td>
+                        <td>{{ user.company }}</td>
+                        <td>{{ user.zipcode }}</td>
+                        <td>{{ user.city }}</td>
+                        <td>{{ user.created_at }}</td>
+                        <td><a href="{{path('app_data_user_showOne', {id: user.id} )}}" ><i class="fa fa-eye"></i></a></td>
+                        <td><a href="{{path('app_data_user_deleteOne', {id: user.id} )}}" ><i class="fa fa-trash"></i></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir les informations de l'article{% endblock %}
+
+{% block body %}
+
+    <section class="container mx-auto my-5">
+        <div class="card text-center w-50 mx-auto">
+            <div class="card-header">
+                <h5 class="card-title">Commentaire n°{{ comment.id }}</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text mb-4">Envoyé par: {{ comment.user.firstname }} {{ comment.user.lastname }}</p>
+                <p class="card-text mb-4">Contenu: {{ comment.content }}</p>
+                <p class="card-text">Envoyé le: {{ comment.createdAt.format('d/m/Y') }}</p>
+            </div>
+            <div class="card-footer">
+                <p class="card-text">Mis à jour: <span class="badge text-bg-secondary">{% if comment.updatedAt != null %}{{ comment.updatedAt.format('d/m/Y') }}{% else %} Pas encore{% endif %}</span></p>
+            </div>            
+        </div>
+    </section>
+
+{% endblock %}

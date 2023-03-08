@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TicketController extends AbstractController
 {
-    #[Route("/utilisateur/ticket/nouveau", name:"app_user_createTicket")]    
+    #[Route("/user/ticket/new", name:"app_user_createTicket")]
     public function createTicket(Request $request, EntityManagerInterface $entityManager, UserRepository $repo): Response
     {
         // Récupération de l'utilisateur avec informations (array)

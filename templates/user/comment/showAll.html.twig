@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir les informations des <strong>commentaires</strong>{% endblock %}
+
+{% block body %}
+    <section class="container w-75 my-5 text-center">
+        <h1 class="mb-3">Liste de vos <strong>commentaires</strong> enregistrés</h1>
+        <div class="row">
+            <table class="table table-hover bg-light my-3">
+                <thead class="table-dark">
+                    <tr>
+                        <td>N°</td>
+                        <td>Article</td>
+                        <td>Contenu</td>
+                        <td>Status</td>
+                        <td>Modifié le</td>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for comment in comments %}
+                    <tr>
+                        <td>{{ comment.id }}</td>
+                        <td>{{ comment.postId }}</td>
+                        <td>{{ comment.content }} €</td>
+                        <td>{{ comment.createdAt.format('d/m/Y') }}</td>
+                        <td>{% if comment.updatedAt != null %}{{ comment.updatedAt.format('d/m/Y') }}{% else %} Pas encore{% endif %}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </section>
+{% endblock %}

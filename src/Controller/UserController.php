@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
+use App\Form\NewCommentFormType;
+use App\Repository\CommentRepository;
+use App\Repository\PostRepository;
 use DateTime;
 use App\Entity\User;
 use App\Entity\Answer;
@@ -36,14 +40,14 @@ class UserController extends AbstractController
         if (in_array('ROLE_ADMIN', $user[0]->getRoles())) {
             return $this->redirectToRoute('app_admin');
         }
-
+        /*
         if($user[0]->getNbLogged() >= 4)
         {            
             return $this->redirectToRoute('app_logout');
-        }
+        }*/
 
         $user[0]->setIsLogged(true);
-        $user[0]->setNbLogged($user[0]->getNbLogged()+1);
+        //$user[0]->setNbLogged($user[0]->getNbLogged()+1);
 
         $entityManager->persist($user[0]);
         $entityManager->flush();
@@ -218,6 +222,28 @@ class UserController extends AbstractController
 
     // USER POSTS -----------------------------------------------------
 
+    #[Route("/user/posts", name:"app_user_showPosts")]
+    public function showPosts(Request $request, EntityManagerInterface $entityManager, UserRepository $repo): Response
+    {
+        // Récupération de l'utilisateur avec informations (array)
+        $u = $this->getUser()->getUserIdentifier();
+        $user = $repo->findByEmail($u);
+        //dd($user[0]->getRoles());
+
+        // Si l'utilisateur est l'admin
+        if (in_array('ROLE_ADMIN', $user[0]->getRoles())) {
+            return $this->redirectToRoute('app_admin');
+        }
+
+        // Récupération de tous les articles crées par l'utilisateur et les réponses
+        $posts = $user[0]->getPosts();
+
+        return $this->render('user/comment/showAll.html.twig', [
+            'controller_name' => 'UserController',
+            'posts' => $posts
+        ]);
+    }
+
     #[Route("/user/post/{id}", name:"app_user_showPost")]
     public function showPost(Request $request, EntityManagerInterface $entityManager, UserRepository $repo, PostRepository $repo1, $id): Response
     {
@@ -265,6 +291,31 @@ class UserController extends AbstractController
             'comments' => $comments,
             $id,
             'newCommentForm' => $form->createView()
+        ]);
+    }
+
+
+    // USER COMMENTS -----------------------------------------------------
+
+    #[Route("/user/comments", name:"app_user_showComments")]
+    public function showComments(Request $request, EntityManagerInterface $entityManager, UserRepository $repo): Response
+    {
+        // Récupération de l'utilisateur avec informations (array)
+        $u = $this->getUser()->getUserIdentifier();
+        $user = $repo->findByEmail($u);
+        //dd($user[0]->getRoles());
+
+        // Si l'utilisateur est l'admin
+        if (in_array('ROLE_ADMIN', $user[0]->getRoles())) {
+            return $this->redirectToRoute('app_admin');
+        }
+
+        // Récupération de tous les commentaires écrit par l'utilisateur avec informations
+        $comments = $user[0]->getComments();
+
+        return $this->render('user/comment/showAll.html.twig', [
+            'controller_name' => 'UserController',
+            'comments' => $comments
         ]);
     }
 

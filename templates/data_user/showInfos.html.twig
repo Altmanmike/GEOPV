@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir les <strong>Data User</strong>{% endblock %}
+
+{% block body %}
+
+    <section class="container w-75 my-5 text-center">
+        <h1 class="mb-3">Liste des <strong>utilisateurs</strong> enregistrés ayant procédé à un paiement</h1>
+        <div class="row">
+            <table class="table table-hover bg-light my-3">
+                <thead class="table-dark">
+                <tr>
+                    <td>N°</td>
+                    <td>Nom</td>
+                    <td>Prénom</td>
+                    <td>Email</td>
+                    <td>Téléphone</td>
+                    <td>Crée le</td>
+                    <td>Paiement</td>
+                    <td>Prix total</td>
+                    <td>Facture</td>
+                    <td>Crée le</td>
+                    <td>Complété le</td>
+                    <td>Livraison</td>
+                    <td>Crée le</td>
+                    <td>Complété le</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for usersInfo in usersInfos %}
+                    <tr>
+                        <td>{{ usersInfo.id }}</td>
+                        <td>{{ usersInfo.lastname }}</td>
+                        <td>{{ usersInfo.firstname }}</td>
+                        <td>{{ usersInfo.email }}</td>
+                        <td>{{ usersInfo.phone }}</td>
+                        <td>{{ usersInfo.created_at }}</td>
+                        <td>{% if usersInfo.pid is empty %}Aucun{% else %}{{ usersInfo.pid }}{% endif %}</td>
+                        <td>{% if usersInfo.ptp is empty %}-{% else %}{{ usersInfo.ptp }} €{% endif %}</td>
+                        <td>{% if usersInfo.did is empty %}-{% else %}{{ usersInfo.did }}{% endif %}</td>
+                        <td>{% if usersInfo.dc is empty %}-{% else %}{{ usersInfo.dc }}{% endif %}</td>
+                        <td>{% if usersInfo.dca is empty %}-{% else %}{{ usersInfo.dca }}{% endif %}</td>
+                        <td>{% if usersInfo.iid is empty %}-{% else %}{{ usersInfo.iid }}{% endif %}</td>
+                        <td>{% if usersInfo.ic is empty %}-{% else %}{{ usersInfo.ic }}{% endif %}</td>
+                        <td>{% if usersInfo.ica is empty %}-{% else %}{{ usersInfo.ica }}{% endif %}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </section>
+
+{% endblock %}

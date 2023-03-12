@@ -7,6 +7,10 @@
     <section class="container w-75 my-5 text-center">
         <h1 class="mb-3">Liste des <strong>utilisateurs</strong> enregistrés</h1>
         <div class="row">
+            <div class="mb-2">
+                <h3 class="mb-2">Ajout par l'admin d'un utilisateur : <a href="{{path('app_data_user_create')}}" ><i class="fa fa-plus"></i></a></h3>
+                <h3 class="mb-2">Purger tous les utilisateurs : <a href="{{path('app_data_users_deleteAll')}}" ><i class="fa fa-trash"></i></a></h3>
+            </div>
             <table class="table table-hover bg-light my-3">
                 <thead class="table-dark">
                 <tr>
@@ -38,7 +42,7 @@
                         <td>{{ user.city }}</td>
                         <td>{{ user.created_at }}</td>
                         <td><a href="{{path('app_data_user_showOne', {id: user.id} )}}" ><i class="fa fa-eye"></i></a></td>
-                        <td><a href="{{path('app_data_user_deleteOne', {id: user.id} )}}" ><i class="fa fa-trash"></i></a></td>
+                        <td><a href="{{path('app_data_user_deleteOne', {id: user.id} )}}" ><i class="fa fa-ban"></i></a></td>
                     </tr>
                 {% endfor %}
                 </tbody>

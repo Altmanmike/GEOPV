@@ -18,11 +18,26 @@ class DataUserRepository {
         } catch (\PDOException $e) {
             die("Connexion à la BDD failed: " . $e->getMessage());
         }
-
     }
 
     public function getAllUsers() {
         $sql = 'SELECT * FROM `user`';
+        $stm = $this->connBdd()->prepare($sql);
+        $stm->execute();
+        $users = $stm->fetchAll(PDO::FETCH_ASSOC);
+        return $users;
+    }
+
+    public function getUsersInfos() {
+        $sql = '
+            SELECT
+                u.id, u.email, u.firstname, u.lastname, u.phone, u.created_at, p.id as pid, p.total_price as ptp, 
+                d.id as did, d.created_at as dc, d.completed_at as dca, i.id as iid, i.created_at as ic, i.completed_at as ica
+            FROM `user` u 
+                LEFT JOIN `payment` p ON u.id = p.user_id 
+                LEFT JOIN `delivery` d ON u.id = d.user_id 
+                LEFT JOIN `invoice` i ON u.id = i.user_id
+            ';
         $stm = $this->connBdd()->prepare($sql);
         $stm->execute();
         $users = $stm->fetchAll(PDO::FETCH_ASSOC);
@@ -55,8 +70,8 @@ class DataUserRepository {
         $stm->execute([ $email, $roles, $pwd, $fname, $lname, $phone, $company, $zipcode, $city ]);
     }
 	
-	public function editOneUser($email, $fname, $lname, $phone, $company, $zipcode, $city) {
-        $sql = 'UPDATE `user` SET (`email`, `firstname`, `lastname`, `phone`, `company`, `zipcode`, `city`) VALUES (?, ?, ?, ?, ?, ?, ?)';
+	public function editOneUser($email, $roles, $fname, $lname, $phone, $company, $zipcode, $city) {
+        $sql = 'UPDATE `user` SET (`email`, `roles`, `firstname`, `lastname`, `phone`, `company`, `zipcode`, `city`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
         $stm = $this->connBdd()->prepare($sql);
         $stm->execute([ $email, $fname, $lname, $phone, $company, $zipcode, $city ]);
     }

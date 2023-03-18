@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Ticket;
 use App\Form\NewTicketFormType;
+use App\Repository\CategoryTicketRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class TicketController extends AbstractController
 {
     #[Route("/user/ticket/new", name:"app_user_createTicket")]
-    public function createTicket(Request $request, EntityManagerInterface $entityManager, UserRepository $repo): Response
+    public function createTicket(Request $request, EntityManagerInterface $entityManager, UserRepository $repo, CategoryTicketRepository $repoCT): Response
     {
         // Récupération de l'utilisateur avec informations (array)
         $u = $this->getUser()->getUserIdentifier();        
@@ -26,6 +27,10 @@ class TicketController extends AbstractController
             return $this->redirectToRoute('app_admin');
         }
 
+        // récupération de toutes les catégories de ticket possible
+        $categories_ticket = $repoCT->findAll();
+        //dd($categories_ticket);
+
         // Création d'un ticket avec informations puis ajout dans la base        
         $ticket = new Ticket();
         $form = $this->createForm(NewTicketFormType::class, $ticket);
@@ -35,7 +40,7 @@ class TicketController extends AbstractController
             $ticket->setUser($user[0]);
             $ticket->setTitle($form->get('title')->getData());
             $ticket->setContent($form->get('content')->getData());
-
+            $ticket->setCategoryTicket($form->get('category_ticket')->getData());
             $entityManager->persist($ticket);
             $entityManager->flush();
 
@@ -46,8 +51,8 @@ class TicketController extends AbstractController
 
         return $this->render('user/ticket/create.html.twig', [
             'controller_name' => 'UserController',
+            'categories_ticket' => $categories_ticket,
             'newTicketForm' => $form->createView()
         ]);   
     }
-
 }

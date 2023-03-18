@@ -8,8 +8,9 @@
         <h1 class="text-center mb-3">Nouveau ticket</h1>
         {{ form_start(newTicketForm) }}  
             {{ form_row(newTicketForm.title) }}      
-            {{ form_row(newTicketForm.content) }}     
-            <button type="submit" class="btn btn-primary btn-lg my-3">Envoyer</button>
+            {{ form_row(newTicketForm.content) }}
+            {{ form_row(newTicketForm.category_ticket) }}
+        <button type="submit" class="btn btn-primary btn-lg my-3">Envoyer</button>
         {{ form_end(newTicketForm) }}
     </section>
 

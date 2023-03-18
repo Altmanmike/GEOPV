@@ -6,6 +6,7 @@ use App\Entity\Comment;
 use App\Form\NewCommentFormType;
 use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
+use App\Repository\ProductRepository;
 use DateTime;
 use App\Entity\User;
 use App\Entity\Answer;
@@ -116,7 +117,7 @@ class UserController extends AbstractController
     public function showTickets(UserRepository $repo, TicketRepository $repo1): Response
     {
         // Récupération de l'utilisateur avec informations (array)
-        $u = $this->getUser()->getUserIdentifier();        
+        $u = $this->getUser()->getUserIdentifier();
         $user = $repo->findByEmail($u);
         //dd($user[0]->getRoles());
 
@@ -125,12 +126,12 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_admin');
         }
 
-        // Récupération de tous les tickets crées par l'utilisateur et les réponses 
+        // Récupération de tous les tickets crées par l'utilisateur et les réponses
         $tickets = $user[0]->getTickets();
         //dd($tickets);
-        
+
         return $this->render('user/ticket/showAll.html.twig', [
-            'controller_name' => 'UserController', 
+            'controller_name' => 'UserController',
             'tickets' => $tickets
         ]);
     }
@@ -139,7 +140,7 @@ class UserController extends AbstractController
     public function showTicket(Request $request, EntityManagerInterface $entityManager, UserRepository $repo, TicketRepository $repo1, $id): Response
     {
         // Récupération de l'utilisateur avec informations (array)
-        $u = $this->getUser()->getUserIdentifier();        
+        $u = $this->getUser()->getUserIdentifier();
         $user = $repo->findByEmail($u);
         //dd($user[0]->getRoles());
 
@@ -152,28 +153,30 @@ class UserController extends AbstractController
         $ticket = $repo1->findById($id);
         //dd($ticket);
         $answers = $ticket[0]->getAnswers();
-        //dd($answers);    
+        //dd($answers);
         /*if($ticket[0]->getAnswers() != null)
         {
             $answers = $ticket[0]->getAnswers();
-            //dd($answers);  
-        }*/      
+            //dd($answers);
+        }*/
 
-       // Création d'une réponse au ticket avec informations puis ajout dans la base        
+       // Création d'une réponse au ticket avec informations puis ajout dans la base
        $answer = new Answer();
        $form = $this->createForm(NewAnswerFormType::class, $answer);
        $form->handleRequest($request);
 
-       if ($form->isSubmitted() && $form->isValid()) { 
+       if ($form->isSubmitted() && $form->isValid()) {
 
            $answer->setContent($form->get('content')->getData());
+           $answer->setUser($user[0]);
+           $answer->setTicket($ticket[0]);
 
            $entityManager->persist($answer);
            $entityManager->flush();
-           
+
            $user[0]->setNbAnswers($user[0]->getNbAnswers()+1);
 
-           return $this->redirectToRoute('app_user_showTicket', [ $id ]); 
+           return $this->redirectToRoute('app_user_showTicket', [ $id ] );
        }
 
         return $this->render('user/ticket/show.html.twig', [
@@ -183,41 +186,6 @@ class UserController extends AbstractController
             $id,
             'newAnswerForm' => $form->createView()
         ]);
-    }
-
-    #[Route("/user/ticket/new", name:"app_user_createTicket")]
-    public function createTicket(Request $request, EntityManagerInterface $entityManager, UserRepository $repo): Response
-    {
-        // Récupération de l'utilisateur avec informations (array)
-        $u = $this->getUser()->getUserIdentifier();        
-        $user = $repo->findByEmail($u);
-        //dd($user[0]->getRoles());
-
-        // Si l'utilisateur est l'admin
-        if (in_array('ROLE_ADMIN', $user[0]->getRoles())) {
-            return $this->redirectToRoute('app_admin');
-        }
-
-        // Création d'un ticket avec informations puis ajout dans la base        
-        $ticket = new Ticket();
-        $form = $this->createForm(NewTicketFormType::class, $ticket);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $ticket->setTitle($form->get('title')->getData());
-            $ticket->setContent($form->get('content')->getData());
-
-            $entityManager->persist($ticket);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_user_showTickets'); 
-        }
-
-        return $this->render('user/ticket/create.html.twig', [
-            'controller_name' => 'UserController',
-            'newTicketForm' => $form->createView()
-        ]);   
     }
 
     // USER POSTS -----------------------------------------------------
@@ -404,6 +372,7 @@ class UserController extends AbstractController
         // Récupération de l'utilisateur avec informations (array)
         $u = $this->getUser()->getUserIdentifier();        
         $user = $repo->findByEmail($u);
+        //dd($user[0]);
         //dd($user[0]->getRoles());
 
         // Si l'utilisateur est l'administrateur
@@ -413,7 +382,7 @@ class UserController extends AbstractController
 
         // Récupération de tous les paiements fait par l'utilisateur avec informations
         $payments = $user[0]->getPayments();
-
+        //dd($payments);
         return $this->render('user/payment/showAll.html.twig', [
             'controller_name' => 'UserController',
             'payments' => $payments
@@ -434,7 +403,7 @@ class UserController extends AbstractController
         }
 
         // Récupération d'un paiement avec informations 
-        $payment = $repo4->findById($id);
+        $payment = $repo4->findBy($id);
         //dd($payment[0]);
 
         return $this->render('user/payment/show.html.twig', [

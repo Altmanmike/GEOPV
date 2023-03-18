@@ -502,15 +502,19 @@ class AdminController extends AbstractController
         // Récupération de l'utilisateur avec informations (array)
         $u = $this->getUser()->getUserIdentifier();        
         $user = $repo->findByEmail($u);
-        //dd($user[0]->getRoles());
 
         // Si l'utilisateur n'est pas l'administrateur
         if (!in_array('ROLE_ADMIN', $user[0]->getRoles())) {
             return $this->redirectToRoute('app_user');
         }
-
+        //dd($repo4);
         // Récupération de tous les paiements avec informations
-        $payments = $repo4->findAll();
+        if(!empty($repo4->findAll())) {
+            $payments = $repo4->findAll();
+        } else {
+            $payments = [];
+        }
+
 
         return $this->render('admin/payment/showAll.html.twig', [
             'controller_name' => 'AdminController',

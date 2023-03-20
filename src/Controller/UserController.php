@@ -217,7 +217,7 @@ class UserController extends AbstractController
     {
         // Récupération de l'utilisateur avec informations (array)
         $u = $this->getUser()->getUserIdentifier();
-        $user = $repo->findByEmail($u);
+        $user = $repo->findByEmail($u);        
         //dd($user[0]->getRoles());
 
         // Si l'utilisateur est l'admin
@@ -229,6 +229,7 @@ class UserController extends AbstractController
         $post = $repo1->findById($id);
         //dd($post);
         $comments = $post[0]->getComments();
+        $category_Post = $post[0]->getCategoryPost();
         //dd($comments);
         /*if($ticket[0]->getComments() != null)
         {
@@ -244,19 +245,22 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $comment->setContent($form->get('content')->getData());
+            $comment->setPost($post[0]);
+            $comment->setUser($user[0]);
 
             $entityManager->persist($comment);
             $entityManager->flush();
 
             $user[0]->setNbComments($user[0]->getNbComments()+1);
-
-            return $this->redirectToRoute('app_user_showPost', [ $id ]);
+            
+           //return $this->redirectToRoute('app_user_showPost', [ $id ]);
         }
 
         return $this->render('user/post/show.html.twig', [
             'controller_name' => 'UserController',
             'post' => $post[0],
             'comments' => $comments,
+            'category_Post' => $category_Post,
             $id,
             'newCommentForm' => $form->createView()
         ]);

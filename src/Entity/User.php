@@ -494,4 +494,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getNbComments(): ?int
+    {
+        return $this->nb_comments;
+    }
+
+    public function setNbComments(?int $nb_comments): self
+    {
+        $this->nb_comments = $nb_comments;
+
+        return $this;
+    }
+
+    public function getNbPosts(): ?int
+    {
+        return $this->nb_posts;
+    }
+
+    public function setNbPosts(?int $nb_posts): self
+    {
+        $this->nb_posts = $nb_posts;
+
+        return $this;
+    }
+
 }

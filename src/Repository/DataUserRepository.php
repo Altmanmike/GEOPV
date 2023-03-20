@@ -8,7 +8,7 @@ class DataUserRepository {
     private $bdd_host = 'localhost';
     private $bdd_ident = 'root';
     private $bdd_password = '';
-    private $bdd_name = 'geopv';
+    private $bdd_name = 'cda_geopv';
 
     private function connBdd() {
         try {

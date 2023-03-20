@@ -12,14 +12,27 @@ use Symfony\Component\Routing\Annotation\Route;
 class DataUserController extends AbstractController
 {
 	private DataUserRepository $dataUserRepo;
+    private UserRepository $repo;
 	
-	public function __construct(DataUserRepository $dataUserRepo) {
+	public function __construct(DataUserRepository $dataUserRepo, UserRepository $repo) {
 		$this->dataUserRepo = $dataUserRepo;
+        $this->repo = $repo;
 	}
 	
     #[Route('/data/users', name: 'app_data_users_showAll')]
     public function index(): Response
     {
+        // Récupération de l'utilisateur avec informations (array)
+        $u = $this->getUser()->getUserIdentifier();        
+        $user = $this->repo->findByEmail($u);
+        //dd($user[0]->getRoles());
+        
+        // Si l'utilisateur n'est pas l'administrateur
+        if (!in_array('ROLE_ADMIN', $user[0]->getRoles())) {
+            return $this->redirectToRoute('app_user');
+        }
+        //dd($user[0]->getRoles());
+
         $users = $this->dataUserRepo->getAllUsers();
 
         return $this->render('data_user/showAll.html.twig', [
@@ -58,6 +71,17 @@ class DataUserController extends AbstractController
     #[Route('/data/user/{id}/del', name: 'app_data_user_deleteOne')]
     public function dataUserDel($id): Response
     {
+        // Récupération de l'utilisateur avec informations (array)
+        $u = $this->getUser()->getUserIdentifier();        
+        $user = $this->repo->findByEmail($u);
+        //dd($user[0]->getRoles());
+        
+        // Si l'utilisateur n'est pas l'administrateur
+        if (!in_array('ROLE_ADMIN', $user[0]->getRoles())) {
+            return $this->redirectToRoute('app_user');
+        }
+        //dd($user[0]->getRoles());
+        
         $this->dataUserRepo->delOneUser($id);
         return $this->redirectToRoute('app_data_users_showAll');
     }
@@ -65,6 +89,17 @@ class DataUserController extends AbstractController
     #[Route('/data/users/purge', name: 'app_data_users_deleteAll')]
     public function dataUsersDel(): Response
     {
+        // Récupération de l'utilisateur avec informations (array)
+        $u = $this->getUser()->getUserIdentifier();        
+        $user = $this->repo->findByEmail($u);
+        //dd($user[0]->getRoles());
+        
+        // Si l'utilisateur n'est pas l'administrateur
+        if (!in_array('ROLE_ADMIN', $user[0]->getRoles())) {
+            return $this->redirectToRoute('app_user');
+        }
+        //dd($user[0]->getRoles());
+
         $this->dataUserRepo->purgeUserTable();
         return $this->redirectToRoute('app_data_users_showAll');
     }

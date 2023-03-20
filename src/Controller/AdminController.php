@@ -494,6 +494,7 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('app_admin_showProducts');
     }
 
+
     // ADMIN PAYMENTS -----------------------------------------------------------------
 
     #[Route("/admin/payments", name:"app_admin_showPayments")]
@@ -507,14 +508,10 @@ class AdminController extends AbstractController
         if (!in_array('ROLE_ADMIN', $user[0]->getRoles())) {
             return $this->redirectToRoute('app_user');
         }
-        //dd($repo4);
-        // Récupération de tous les paiements avec informations
-        if(!empty($repo4->findAll())) {
-            $payments = $repo4->findAll();
-        } else {
-            $payments = [];
-        }
 
+        // Récupération de tous les paiements avec informations
+        $payments = $repo4->findAll();
+        //dd($payments);
 
         return $this->render('admin/payment/showAll.html.twig', [
             'controller_name' => 'AdminController',

@@ -176,7 +176,7 @@ class UserController extends AbstractController
 
            $user[0]->setNbAnswers($user[0]->getNbAnswers()+1);
 
-           return $this->redirectToRoute('app_user_showTicket', [ $id ] );
+           //return $this->redirectToRoute('app_user_showTicket', [ $id ] );
        }
 
         return $this->render('user/ticket/show.html.twig', [
@@ -284,7 +284,7 @@ class UserController extends AbstractController
 
         // Récupération de tous les commentaires écrit par l'utilisateur avec informations
         $comments = $user[0]->getComments();
-
+        //dd($comments);
         return $this->render('user/comment/showAll.html.twig', [
             'controller_name' => 'UserController',
             'comments' => $comments

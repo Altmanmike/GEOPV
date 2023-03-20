@@ -41,11 +41,11 @@ class Payment
     #[ORM\JoinColumn(nullable: false)]
     private ?Product $product = null;
 
-    #[ORM\OneToOne(inversedBy: 'payments')]
+    #[ORM\ManyToOne(inversedBy: 'payments')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Delivery $delivery = null;
 
-    #[ORM\OneToOne(inversedBy: 'payments')]
+    #[ORM\ManyToOne(inversedBy: 'payments')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Invoice $invoice = null;
 

@@ -20,7 +20,7 @@
                 {% for comment in comments %}
                     <tr>
                         <td>{{ comment.id }}</td>
-                        <td>{{ comment.post_id }}</td>
+                        <td>{{ comment.post.id }}</td>
                         <td>{{ comment.content }} €</td>
                         <td>{{ comment.createdAt.format('d/m/Y') }}</td>
                         <td>{% if comment.updatedAt != null %}{{ comment.updatedAt.format('d/m/Y') }}{% else %} Pas encore{% endif %}</td>

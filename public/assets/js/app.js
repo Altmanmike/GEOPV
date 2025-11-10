@@ -10,7 +10,7 @@ var map = L.map('map', {measureControl:true}).setView([45.76, 4.85], 14);
 /*********************************************************/
 /*************** GEOAPIFY FORM RECHERCHE *****************/
 var marker = null;
-var myAPIKey = "4c276576aff9404c8418ec208b227049"; // Get an API Key on https://myprojects.geoapify.com
+var myAPIKey = "78369676c08446b9906dca31640034a2"; // Get an API Key on https://myprojects.geoapify.com
 var mapURL = L.Browser.retina
   ? `https://maps.geoapify.com/v1/tile/{mapStyle}/{z}/{x}/{y}.png?apiKey={apiKey}`
   : `https://maps.geoapify.com/v1/tile/{mapStyle}/{z}/{x}/{y}@2x.png?apiKey={apiKey}`;
@@ -39,7 +39,7 @@ const addressSearchControl = L.control.addressSearch(myAPIKey, {
     } else {
       map.setView([address.lat, address.lon], 15);
     }
-    console.log(address);
+    //console.log(address);
     const postcodeAPI = address.postcode;
     const commune = address.city;
     
@@ -98,8 +98,7 @@ const addressSearchControl = L.control.addressSearch(myAPIKey, {
                 //console.log(response);            
                 return response.json();
             }).then(geojsonFeature => {
-                console.log("geojsonFeature:");
-                console.log(geojsonFeature);   
+                //console.log("geojsonFeature:", geojsonFeature);                  
                 if(geojsonFeature.length == 0) {
                     
                 } else {
@@ -145,7 +144,7 @@ let saveFile = () => {
     '/**************** GEOPV *******************/\r\n'+
     '/******************************************/\r\n\n'+       
     ((document.getElementById('eventoutput').innerText).replaceAll('</br>', '\n'));
-    console.log((document.getElementById('eventoutput').innerText).replaceAll('</br>', '\n').replaceAll('<h1>', '<h1 style="color:white">'));
+    //console.log((document.getElementById('eventoutput').innerText).replaceAll('</br>', '\n').replaceAll('<h1>', '<h1 style="color:white">'));
     
     // Convert the text to BLOB.
     const textToBLOB = new Blob([data], { type: 'text/plain' });
@@ -171,7 +170,7 @@ let saveFile = () => {
 /***************** COUCHES PAR DEFAUT ********************/
 
 // Photographies aériennes en-dessous de Plan IGN "images réels donc"
-var OrthoIGN = L.tileLayer('https://wxs.ign.fr/{ignApiKey}/geoportail/wmts?'+
+var OrthoIGN = L.tileLayer('https://data.geopf.fr/wmts?'+
     '&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&TILEMATRIXSET=PM'+
     '&LAYER={ignLayer}&STYLE={style}&FORMAT={format}'+
     '&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}',
@@ -184,7 +183,7 @@ var OrthoIGN = L.tileLayer('https://wxs.ign.fr/{ignApiKey}/geoportail/wmts?'+
 }).addTo(map);
 
 // Plan IGN de la france "images non réels" avec une transparence de 50%
-var PlanIGN = L.tileLayer('https://wxs.ign.fr/{ignApiKey}/geoportail/wmts?'+
+var PlanIGN = L.tileLayer('https://data.geopf.fr/wmts?'+
     '&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&TILEMATRIXSET=PM'+
     '&LAYER={ignLayer}&STYLE={style}&FORMAT={format}'+
     '&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}',
@@ -197,7 +196,7 @@ var PlanIGN = L.tileLayer('https://wxs.ign.fr/{ignApiKey}/geoportail/wmts?'+
 });
 
 // Plan des cadastre en-dessous de Plan IGN
-var CadIGN = L.tileLayer('https://wxs.ign.fr/{ignApiKey}/geoportail/wmts?'+
+var CadIGN = L.tileLayer('https://data.geopf.fr/wmts?'+
     '&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&TILEMATRIXSET=PM'+
     '&LAYER={ignLayer}&STYLE={style}&FORMAT={format}'+
     '&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}',
@@ -210,7 +209,7 @@ var CadIGN = L.tileLayer('https://wxs.ign.fr/{ignApiKey}/geoportail/wmts?'+
         opacity: 0.8
 });
 
-var EleIGN1 = L.tileLayer('https://wxs.ign.fr/{ignApiKey}/geoportail/wmts?'+
+var EleIGN1 = L.tileLayer('https://data.geopf.fr/wmts?'+
     '&REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&TILEMATRIXSET=PM'+
     '&LAYER={ignLayer}&STYLE={style}&FORMAT={format}'+
     '&TILECOL={x}&TILEROW={y}&TILEMATRIX={z}',
@@ -224,12 +223,11 @@ var EleIGN1 = L.tileLayer('https://wxs.ign.fr/{ignApiKey}/geoportail/wmts?'+
 });
 
 // SERVICE WMS:
-var PluIGN = L.tileLayer.wms('https://wxs-gpu.mongeoportail.ign.fr/externe/vkd1evhid6jdj5h4hkhyzjto/wms/v?', 
-    {
-        layers: 'zone_secteur',
-        format: 'image/png', 
-        transparent: true, 
-        opacity: 0.5
+var PluIGN = L.tileLayer.wms("https://data.geopf.fr/wms-v/ows?", {
+  layers: "zone_secteur",
+  format: "image/png",
+  transparent: true,
+  opacity: 0.5,
 });
 //console.log(PluIGN);
 /********************************************************************************************/
@@ -279,7 +277,8 @@ function onMapClick(e) {
     wfsClient.getFeatures(
         'CADASTRALPARCELS.PARCELLAIRE_EXPRESS:parcelle',
         filter
-    ).then(function(geojson){
+    ).then(function (geojson) {
+        console.log("geojson.features :", geojson.features);
         /* affichage de la popup */        
         const message = geojson.features.length == 0 ? 'Parcelle non trouvée' : '<h1>Parcelle</h1>'+'</br>'+'Numéro parcelle: '+geojson.features[0].properties.numero+'</br>'+'Section:  '+geojson.features[0].properties.section+'</br>'+'Superficie:  '+(geojson.features[0].properties.contenance*0.0001).toFixed(3)+' Hectares'+'</br>'+'Code département:  '+geojson.features[0].properties.code_dep+'</br>'+'Code Insee:  '+geojson.features[0].properties.code_insee+'</br>'+'Nom commune:  '+geojson.features[0].properties.nom_com+'</br>'+e.latlng.lat+','+e.latlng.lng 
        
@@ -294,12 +293,12 @@ function onMapClick(e) {
         const geojsonLayer = L.geoJSON(geojson,{
             style: myStyle
         });
-        console.log(geojsonLayer);        
+        //console.log(geojsonLayer);        
         geojsonLayer.addTo(layerGroup);
         map.fitBounds(geojsonLayer.getBounds());
     })
     .catch(function(err){
-        console.log(err);
+        //console.log(err);
         showPopup(e.latlng,"Une erreur s'est produite (voir console)");
     });    
 }
@@ -363,7 +362,7 @@ var htmlLegendCAD = L.control.htmllegend({
         layer: CadIGN,
         elements: [{
             label: 'Données cadastrales de l\'IGN',
-            html: '<div class="container-fluid mb-1 cad"><ul class="text-left"><li class="d-flex align-items-center"><img src="./assets/img/Commune.png" alt="" class="me-1" /><p> Commune</p></li><li class="d-flex align-items-center"><img src="./assets/img/Limite_communale.png" alt="" class="me-1" /><p> Limite communale</p></li><li class="d-flex align-items-center"><img src="./img/Limite_de_section.png" alt="" class="me-1" /> Limite de section</p></li><li class="d-flex align-items-center"><img src="./assets/img/Division_cadastrale.png" alt="" class="me-1" /><p> Division cadastrale</p></li><li class="d-flex align-items-center"><img src="./assets/img/Limite_de_division_cadastrale.png" alt="" class="me-1" /><p> Limite de division cadastrale</p></li><li class="d-flex align-items-center"><img src="./assets/img/Parcelle.png" alt="" class="me-1" /><p> Parcelle</p></li></ul></div>'   
+            html: '<div class="container-fluid mb-1 cad"><ul class="text-left"><li class="d-flex align-items-center"><img src="./assets/img/Commune.png" alt="" class="me-1" /><p> Commune</p></li><li class="d-flex align-items-center"><img src="./assets/img/Limite_communale.png" alt="" class="me-1" /><p> Limite communale</p></li><li class="d-flex align-items-center"><img src="./assets/img/Limite_de_section.png" alt="" class="me-1" /> Limite de section</p></li><li class="d-flex align-items-center"><img src="./assets/img/Division_cadastrale.png" alt="" class="me-1" /><p> Division cadastrale</p></li><li class="d-flex align-items-center"><img src="./assets/img/Limite_de_division_cadastrale.png" alt="" class="me-1" /><p> Limite de division cadastrale</p></li><li class="d-flex align-items-center"><img src="./assets/img/Parcelle.png" alt="" class="me-1" /><p> Parcelle</p></li></ul></div>'   
         }]
     }],
     defaultOpacity: 0.8,

@@ -55,10 +55,10 @@ class UserController extends AbstractController
 
 
         // Si l'accès à l'application est toujours payé        
-        if($user[0]->isIsAppAcces())
+        /*if($user[0]->isIsAppAcces())
         {
             return $this->redirectToRoute('app_geopv');
-        }
+        }*/
         
         $id = $user[0]->getId();
 

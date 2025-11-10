@@ -17,9 +17,9 @@ class GeopvController extends AbstractController
         $u = $this->getUser()->getUserIdentifier();        
         $user = $repo->findByEmail($u);
         //dd($user[0]->getRoles());
-
+        
         // Si l'utilisateur n'est pas l'administrateur
-        if (!in_array('ROLE_ADMIN', $user[0]->getRoles()) || ($user[0]->isIsAppAcces() == 0) ) {    
+        if (($user[0]->isIsAppAcces() === 0) || ($user[0]->isIsAppAcces() === null)) {    
             return $this->redirectToRoute('app_user');
         } else {
             return $this->render('geopv/index.html.twig', [

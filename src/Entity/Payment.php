@@ -41,16 +41,16 @@ class Payment
     #[ORM\JoinColumn(nullable: false)]
     private ?Product $product = null;
 
-    #[ORM\ManyToOne(inversedBy: 'payments')]
+    #[ORM\Column]
+    private ?float $price_unit = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Delivery $delivery = null;
 
-    #[ORM\ManyToOne(inversedBy: 'payments')]
+    #[ORM\OneToOne(inversedBy: 'payment', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Invoice $invoice = null;
-
-    #[ORM\Column]
-    private ?float $price_unit = null;
 
     public function __construct()
     {
@@ -158,30 +158,6 @@ class Payment
         return $this;
     }
 
-    public function getDelivery(): ?Delivery
-    {
-        return $this->delivery;
-    }
-
-    public function setDelivery(?Delivery $delivery): self
-    {
-        $this->delivery = $delivery;
-
-        return $this;
-    }
-
-    public function getInvoice(): ?Invoice
-    {
-        return $this->invoice;
-    }
-
-    public function setInvoice(?Invoice $invoice): self
-    {
-        $this->invoice = $invoice;
-
-        return $this;
-    }
-
     public function getPriceUnit(): ?float
     {
         return $this->price_unit;
@@ -199,5 +175,29 @@ class Payment
         $date = new DateTimeImmutable("now");
         $newDate = $date->sub(new DateInterval('P7D'));
         return $newDate;
+    }
+
+    public function getDelivery(): ?Delivery
+    {
+        return $this->delivery;
+    }
+
+    public function setDelivery(Delivery $delivery): static
+    {
+        $this->delivery = $delivery;
+
+        return $this;
+    }
+
+    public function getInvoice(): ?Invoice
+    {
+        return $this->invoice;
+    }
+
+    public function setInvoice(Invoice $invoice): static
+    {
+        $this->invoice = $invoice;
+
+        return $this;
     }
 }

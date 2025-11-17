@@ -26,6 +26,9 @@ class Invoice
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $completed_at = null;
 
+    #[ORM\OneToOne(mappedBy: 'invoice', cascade: ['persist', 'remove'])]
+    private ?Payment $payment = null;
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();              
@@ -68,6 +71,23 @@ class Invoice
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getPayment(): ?Payment
+    {
+        return $this->payment;
+    }
+
+    public function setPayment(Payment $payment): static
+    {
+        // set the owning side of the relation if necessary
+        if ($payment->getInvoice() !== $this) {
+            $payment->setInvoice($this);
+        }
+
+        $this->payment = $payment;
 
         return $this;
     }

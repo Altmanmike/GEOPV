@@ -28,7 +28,7 @@ class CategoryTicket
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updated_at = null;
 
-    #[ORM\OneToMany(mappedBy: 'categoryTickets', targetEntity: Ticket::class)]
+    #[ORM\OneToMany(mappedBy: 'category_ticket', targetEntity: Ticket::class)]
     private Collection $tickets;
 
     public function __construct()
@@ -102,7 +102,7 @@ class CategoryTicket
     {
         if (!$this->tickets->contains($ticket)) {
             $this->tickets->add($ticket);
-            $ticket->setUser($this);
+            $ticket->setCategoryTicket($this);
         }
 
         return $this;
@@ -112,8 +112,8 @@ class CategoryTicket
     {
         if ($this->tickets->removeElement($ticket)) {
             // set the owning side to null (unless already changed)
-            if ($ticket->getUser() === $this) {
-                $ticket->setUser(null);
+            if ($ticket->getCategoryTicket() === $this) {
+                $ticket->setCategoryTicket(null);
             }
         }
 

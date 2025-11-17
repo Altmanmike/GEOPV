@@ -37,7 +37,7 @@ class Ticket
 
     #[ORM\ManyToOne(inversedBy: 'tickets')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?CategoryTicket $categoryTicket = null;
+    private ?CategoryTicket $category_ticket = null;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $completed_at = null;
@@ -127,12 +127,12 @@ class Ticket
 
     public function getCategoryTicket(): ?CategoryTicket
     {
-        return $this->categoryTicket;
+        return $this->category_ticket;
     }
 
-    public function setCategoryTicket(?CategoryTicket $categoryTicket): self
+    public function setCategoryTicket(?CategoryTicket $category_ticket): self
     {
-        $this->categoryTicket = $categoryTicket;
+        $this->category_ticket = $category_ticket;
 
         return $this;
     }

@@ -31,7 +31,7 @@ class CategoryPost
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updated_at = null;
 
-    #[ORM\OneToMany(mappedBy: 'categoryPosts', targetEntity: Post::class)]
+    #[ORM\OneToMany(mappedBy: 'category_post', targetEntity: Post::class)]
     private Collection $posts;
 
     public function __construct()
@@ -117,7 +117,7 @@ class CategoryPost
     {
         if (!$this->posts->contains($post)) {
             $this->posts->add($post);
-            $post->setUser($this);
+            $post->setCategoryPost($this);
         }
 
         return $this;
@@ -127,8 +127,8 @@ class CategoryPost
     {
         if ($this->posts->removeElement($post)) {
             // set the owning side to null (unless already changed)
-            if ($post->getUser() === $this) {
-                $post->setUser(null);
+            if ($post->getCategoryPost() === $this) {
+                $post->setCategoryPost(null);
             }
         }
 

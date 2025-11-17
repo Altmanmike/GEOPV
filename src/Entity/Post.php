@@ -33,7 +33,7 @@ class Post
 
     #[ORM\ManyToOne(inversedBy: 'posts')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?CategoryPost $categoryPost = null;
+    private ?CategoryPost $category_post = null;
 
     #[ORM\OneToMany(mappedBy: 'post', targetEntity: Comment::class, orphanRemoval: true)]
     private Collection $comments;
@@ -127,12 +127,12 @@ class Post
 
     public function getCategoryPost(): ?CategoryPost
     {
-        return $this->categoryPost;
+        return $this->category_post;
     }
 
-    public function setCategoryPost(?CategoryPost $categoryPost): self
+    public function setCategoryPost(?CategoryPost $category_post): self
     {
-        $this->categoryPost = $categoryPost;
+        $this->category_post = $category_post;
 
         return $this;
     }

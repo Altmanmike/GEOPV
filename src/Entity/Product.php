@@ -35,7 +35,7 @@ class Product
 
     #[ORM\ManyToOne(inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?CategoryProduct $categoryProduct = null;
+    private ?CategoryProduct $category_product = null;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Payment::class)]
     private Collection $payments;
@@ -140,12 +140,12 @@ class Product
 
     public function getCategoryProduct(): ?CategoryProduct
     {
-        return $this->categoryProduct;
+        return $this->category_product;
     }
 
-    public function setCategoryProduct(?CategoryProduct $categoryProduct): self
+    public function setCategoryProduct(?CategoryProduct $category_product): self
     {
-        $this->categoryProduct = $categoryProduct;
+        $this->category_product = $category_product;
 
         return $this;
     }

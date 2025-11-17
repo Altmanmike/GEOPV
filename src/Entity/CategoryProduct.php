@@ -31,7 +31,7 @@ class CategoryProduct
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updated_at = null;
 
-    #[ORM\OneToMany(mappedBy: 'categoryProducts', targetEntity: Product::class)]
+    #[ORM\OneToMany(mappedBy: 'category_product', targetEntity: Product::class)]
     private Collection $products;
 
     public function __construct()
@@ -106,29 +106,29 @@ class CategoryProduct
     }
 
     /**
-     * @return Collection<int, Post>
+     * @return Collection<int, Product>
      */
-    public function getPosts(): Collection
+    public function getProducts(): Collection
     {
-        return $this->posts;
+        return $this->products;
     }
 
-    public function addPost(Post $post): self
+    public function addProduct(Product $product): self
     {
-        if (!$this->posts->contains($post)) {
-            $this->posts->add($post);
-            $post->setUser($this);
+        if (!$this->products->contains($product)) {
+            $this->products->add($product);
+            $product->setCategoryProduct($this);
         }
 
         return $this;
     }
 
-    public function removePost(Post $post): self
+    public function removeProduct(Product $product): self
     {
-        if ($this->posts->removeElement($post)) {
+        if ($this->products->removeElement($product)) {
             // set the owning side to null (unless already changed)
-            if ($post->getUser() === $this) {
-                $post->setUser(null);
+            if ($product->getCategoryProduct() === $this) {
+                $product->setCategoryProduct(null);
             }
         }
 
